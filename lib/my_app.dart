@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         title: TextStrings.appName,
         theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
+        //darkTheme: AppTheme.darkTheme,
         getPages: Routes.routes,
+        debugShowCheckedModeBanner: false,
         unknownRoute: GetPage(
           name: '/not-found',
           page: () => const Scaffold(
