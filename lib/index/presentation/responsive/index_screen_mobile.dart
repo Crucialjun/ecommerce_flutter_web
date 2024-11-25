@@ -1,4 +1,4 @@
-import 'package:ecommerce_flutter_web/common/app_sidebar.dart';
+import 'package:ecommerce_flutter_web/common/sidebar/app_sidebar.dart';
 import 'package:ecommerce_flutter_web/common/headers/app_header.dart';
 import 'package:flutter/material.dart';
 
