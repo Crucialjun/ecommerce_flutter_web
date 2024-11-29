@@ -1,7 +1,8 @@
-
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
+import 'package:ecommerce_flutter_web/features/auth/presentation/forget_passoword/forget_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -12,15 +13,13 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilder(
         child: Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: AppSizes.spaceBtwItems),
+      padding: const EdgeInsets.symmetric(vertical: AppSizes.spaceBtwItems),
       child: Column(
         children: [
           FormBuilderTextField(
             name: "email",
             decoration: const InputDecoration(
-                labelText: "Email",
-                prefix: Icon(Icons.email_outlined)),
+                labelText: "Email", prefix: Icon(Icons.email_outlined)),
           ),
           const SizedBox(
             height: AppSizes.spaceBtwInputFields,
@@ -45,7 +44,7 @@ class LoginForm extends StatelessWidget {
                 ],
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => Get.toNamed(ForgetPasswordScreen.routeName),
                 child: const Text('Forgot Password?'),
               )
             ],
