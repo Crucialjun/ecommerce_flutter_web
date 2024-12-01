@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       //darkTheme: AppTheme.darkTheme,
       getPages: Routes.routes,
       debugShowCheckedModeBanner: false,
-      initialRoute: DashboardScreen.routeName,
+
+      //initialRoute: LoginScreen.routeName,
       unknownRoute: GetPage(
         name: '/not-found',
         page: () => const Scaffold(
