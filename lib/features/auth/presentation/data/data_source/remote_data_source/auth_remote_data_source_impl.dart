@@ -9,7 +9,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final _firebaseService = locator<FirebaseService>();
   @override
   Future<Either<Failure, User>> userAuthStatus() {
-    // TODO: implement userAuthStatus
-    throw UnimplementedError();
+    return _firebaseService.userAuthStatus();
+  }
+  
+  @override
+  Future<Either<Failure, void>> setAuthPersistence({required Persistence persistence}) {
+    return _firebaseService.setAuthPersistence(persistence: persistence);
   }
 }

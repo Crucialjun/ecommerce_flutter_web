@@ -30,5 +30,8 @@ abstract class FirebaseService {
     required Map<String, dynamic> product,
     required String dbName,
   });
+  Future<Either<Failure, void>> setAuthPersistence({
+    required Persistence persistence,
+  });
   
 }

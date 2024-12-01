@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:ecommerce_flutter_web/services/firebase_service/firebase_service.dart';
@@ -8,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:logger/logger.dart';
-
 
 class IFirebaseService implements FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -218,5 +216,20 @@ class IFirebaseService implements FirebaseService {
   Future<Either<Failure, void>> signOut() {
     // TODO: implement signOut
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, void>> setAuthPersistence(
+      {required Persistence persistence}) async {
+    try {
+      await _firebaseAuth.setPersistence(persistence);
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    }
   }
 }

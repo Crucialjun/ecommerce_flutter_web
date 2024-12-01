@@ -11,4 +11,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, User>> userAuthStatus() {
     return _remoteDataSource.userAuthStatus();
   }
+  
+  @override
+  Future<Either<Failure, void>> setAuthPersistence({required Persistence persistence}) {
+    return _remoteDataSource.setAuthPersistence(persistence: persistence);
+  }
 }
