@@ -3,8 +3,6 @@ import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:ecommerce_flutter_web/core/usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/set_auth_persistence_usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/user_auth_status_usecase.dart';
-import 'package:ecommerce_flutter_web/features/auth/presentation/login/login_screen.dart';
-import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 

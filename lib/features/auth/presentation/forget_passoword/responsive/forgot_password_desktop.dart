@@ -1,10 +1,7 @@
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/forget_passoword/components/forgot_password_form.dart';
-import 'package:ecommerce_flutter_web/features/auth/presentation/reset_password/reset_password_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
 
 class ForgotPasswordDesktop extends StatelessWidget {
   const ForgotPasswordDesktop({super.key});

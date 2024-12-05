@@ -41,12 +41,22 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(
                 height: AppSizes.spaceBtwInputFields,
               ),
-              FormBuilderTextField(
-                name: "password",
-                decoration: const InputDecoration(
-                    labelText: "Password",
-                    prefix: Icon(Icons.lock_outline),
-                    suffixIcon: Icon(Icons.visibility_off_outlined)),
+              Obx(
+                () => FormBuilderTextField(
+                  name: "password",
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
+                  obscureText: _controller.hidePassword.value,
+                  decoration: InputDecoration(
+                      labelText: "Password",
+                      prefix: const Icon(Icons.lock_outline),
+                      suffixIcon: InkWell(
+                          onTap: () => _controller.hidePassword.toggle(),
+                          child: Icon(_controller.hidePassword.value
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined))),
+                ),
               ),
               const SizedBox(
                 height: AppSizes.spaceBtwInputFields / 2,
@@ -56,7 +66,11 @@ class _LoginFormState extends State<LoginForm> {
                 children: [
                   Row(
                     children: [
-                      Checkbox(value: false, onChanged: (value) {}),
+                      Obx(() => Checkbox(
+                          value: _controller.rememberMe.value,
+                          onChanged: (value) {
+                            _controller.rememberMe.value = value ?? false;
+                          })),
                       const Text('Remember me')
                     ],
                   ),
@@ -73,7 +87,14 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.saveAndValidate()) {
+                      _controller.signInUser(
+                          rememberMe: _controller.rememberMe.value,
+                          email: _formKey.currentState!.value['email'],
+                          password: _formKey.currentState!.value['password']);
+                    }
+                  },
                   child: const Text('Login'),
                 ),
               ),

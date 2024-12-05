@@ -1,12 +1,8 @@
-import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/login/components/login_form.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/login/components/login_header.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:iconsax/iconsax.dart';
 
 class LoginScreenDesktop extends StatelessWidget {
   const LoginScreenDesktop({super.key});
