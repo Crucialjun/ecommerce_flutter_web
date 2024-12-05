@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB9P0e0qg7cm8KaOQVtKGqT82Xu6c7xq00',
-    appId: '1:850550164084:android:954aec800a3ff180229f21',
+    appId: '1:850550164084:android:09df75ccd5e15230229f21',
     messagingSenderId: '850550164084',
     projectId: 'ecommerce-flutter-web',
     storageBucket: 'ecommerce-flutter-web.firebasestorage.app',
@@ -72,4 +72,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'ecommerce-flutter-web.firebasestorage.app',
     iosBundleId: 'com.example.ecommerceFlutterWeb',
   );
+
 }

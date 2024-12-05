@@ -17,7 +17,7 @@ abstract class FirebaseService {
     required Map<String, dynamic> user,
     required String dbName,
   });
-  Future<Either<Failure, DocumentSnapshot>> getUserFromDb(
+  Future<Either<Failure, DocumentSnapshot<Map<String,dynamic>>>> getUserFromDb(
       {required String collectionName, required String uid});
   Future<Either<Failure, String>> uploadFile(
       {required String path, required File file});

@@ -15,8 +15,9 @@ class AuthController extends GetxController {
 
   @override
   void onReady() {
-    setPersistence();
     userStatus();
+    setPersistence();
+
     super.onReady();
   }
 

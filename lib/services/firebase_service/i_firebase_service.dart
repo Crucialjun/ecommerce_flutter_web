@@ -120,7 +120,7 @@ class IFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<Either<Failure, DocumentSnapshot>> getUserFromDb(
+  Future<Either<Failure, DocumentSnapshot<Map<String,dynamic>>>> getUserFromDb(
       {required String collectionName, required String uid}) async {
     try {
       Logger().i(

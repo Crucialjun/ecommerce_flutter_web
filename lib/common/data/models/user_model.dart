@@ -39,7 +39,7 @@ class UserModel extends UserEntity {
       'email': super.email,
       'phoneNumber': super.phoneNumber,
       'profilePicture': super.profilePicture,
-      'role': super.role,
+      'role': super.role.value,
       'createdAt': super.createdAt,
       'updatedAt': super.updatedAt,
     };

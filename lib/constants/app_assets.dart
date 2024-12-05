@@ -6,6 +6,7 @@ class AppAssets {
   static const String logoBlack = 'assets/logos/logo-black.png';
 
   static const String emailReceived = 'assets/pngs/email_received.png';
+  static const String defaultProfile = 'assets/pngs/default_profile.png';
 
   static const String decorAnimation =
       'assets/animations/141594-animation-of-docer.json';

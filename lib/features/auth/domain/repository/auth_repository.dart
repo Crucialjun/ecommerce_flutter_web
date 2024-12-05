@@ -8,7 +8,10 @@ abstract class AuthRepository {
   Future<Either<Failure, User>> userAuthStatus();
   Future<Either<Failure, void>> setAuthPersistence(
       {required Persistence persistence});
-        Future<Either<Failure, User?>> signInWithEmailAndPassword({required LoginParams loginParams});
-  Future<Either<Failure, User?>> signUpWithEmailAndPassword({required LoginParams loginParams});
+  Future<Either<Failure, User?>> signInWithEmailAndPassword(
+      {required LoginParams loginParams});
+  Future<Either<Failure, User?>> signUpWithEmailAndPassword(
+      {required LoginParams loginParams});
   Future<Either<Failure, void>> addUserToDb({required UserModel userModel});
+  Future<Either<Failure, UserModel>> getUserFromDb({required String uid});
 }

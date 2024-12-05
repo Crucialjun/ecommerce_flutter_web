@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
@@ -65,7 +66,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
             children: [
               const CircleAvatar(
                 radius: 20,
-                backgroundImage: AssetImage('assets/images/avatar.png'),
+                backgroundImage: AssetImage(AppAssets.defaultProfile),
               ),
               const SizedBox(width: AppSizes.sm),
               if (!AppDeviceUtils.isMobileScreen(context))

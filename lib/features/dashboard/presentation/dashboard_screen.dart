@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter_web/utils/site_template.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -6,11 +7,8 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
-      ),
-      body: const Center(
+    return const SiteTemplate(
+      desktop: Center(
         child: Text('Dashboard Screen'),
       ),
     );
