@@ -7,6 +7,7 @@ import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   const AppHeader({super.key, required this.scaffoldKey});
@@ -69,37 +70,41 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ExtendedImage.network(
-                userController.appuser.value.profilePicture,
-                width: 40,
-                height: 40,
-                shape: BoxShape.circle,
-                loadStateChanged: (state) {
-                  if (state.extendedImageLoadState == LoadState.loading) {
-                    return const CircularProgressIndicator();
-                  } else if (state.extendedImageLoadState == LoadState.failed) {
-                    ExtendedImage.asset(
-                      AppAssets.defaultProfile,
-                      width: 40,
-                      height: 40,
-                      shape: BoxShape.circle,
-                    );
-                  }
-                  ExtendedImage.asset(
-                    AppAssets.defaultProfile,
+              Obx(() => ExtendedImage.network(
+                    userController.appuser.value.profilePicture,
                     width: 40,
                     height: 40,
                     shape: BoxShape.circle,
-                  );
-                  return null;
-                },
-              ),
+                    loadStateChanged: (state) {
+                      if (state.extendedImageLoadState == LoadState.loading) {
+                        return const CircularProgressIndicator();
+                      } else if (state.extendedImageLoadState ==
+                          LoadState.failed) {
+                        ExtendedImage.asset(
+                          AppAssets.defaultProfile,
+                          width: 40,
+                          height: 40,
+                          shape: BoxShape.circle,
+                        );
+                      }
+                      ExtendedImage.asset(
+                        AppAssets.defaultProfile,
+                        width: 40,
+                        height: 40,
+                        shape: BoxShape.circle,
+                      );
+                      return null;
+                    },
+                  )),
               if (!AppDeviceUtils.isMobileScreen(context))
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    userController.isLoading.value
+                        ? const CircularProgressIndicator()
+                        :
                     Text(userController.appuser.value.firstName,
                         style: Theme.of(context).textTheme.titleLarge),
                     Text('nich.otieno@gmail.com',

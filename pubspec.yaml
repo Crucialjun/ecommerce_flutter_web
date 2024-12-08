@@ -53,6 +53,7 @@ dependencies:
   network_manager: ^0.1.35
   connectivity_plus: ^6.1.0
   dio: ^5.7.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

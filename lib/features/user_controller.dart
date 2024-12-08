@@ -25,12 +25,7 @@ class UserController extends GetxController {
     Logger().i("User Controller Init Done");
   }
 
-  @override
-  void onReady() {
-    Logger().i("User Controller Ready");
-    super.onReady();
-    Logger().i("User Controller Ready Done");
-  }
+
 
   Future getUser() async {
     Logger().i("Getting user");
