@@ -1,12 +1,14 @@
 import 'package:ecommerce_flutter_web/common/data/enums/app_role_enum.dart';
 import 'package:ecommerce_flutter_web/common/data/models/user_model.dart';
 import 'package:ecommerce_flutter_web/core/locator.dart';
+import 'package:ecommerce_flutter_web/features/auth/controller/auth_controller.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/params/login_params.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/add_user_to_db_usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/get_user_from_db_usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:ecommerce_flutter_web/features/user_controller.dart';
 import 'package:ecommerce_flutter_web/services/dialog_and_sheet_service/dialog_and_sheet_service.dart';
 import 'package:ecommerce_flutter_web/services/network_service/i_network_service.dart';
 import 'package:ecommerce_flutter_web/services/network_service/network_service.dart';
@@ -23,6 +25,8 @@ class LoginController extends GetxController {
 
   final _dialogService = locator<DialogAndSheetService>();
   final _networkService = INetworkService();
+  final _authController = locator<AuthController>();
+  final _userController = locator<UserController>();
 
   Future signUpUser({
     required String email,
@@ -40,7 +44,7 @@ class LoginController extends GetxController {
     var res = await SignUpUsecase()
         .call(LoginParams(email: email, password: password));
 
-    res.fold((l) {
+    await res.fold((l) {
       Logger().e(l.message);
       Navigator.of(Get.overlayContext!).pop();
       Get.snackbar("Oh Snap", l.message);
@@ -57,11 +61,12 @@ class LoginController extends GetxController {
           createdAt: DateTime.now(),
           updatedAt: DateTime.now()));
 
-      res.fold((l) {
+      await res.fold((l) async {
         Logger().e(l.message);
         Navigator.of(Get.overlayContext!).pop();
         Get.snackbar("Oh Snap", l.message);
       }, (r) {
+        Logger().i("User added to db");
         Navigator.of(Get.overlayContext!).pop();
         Get.offAll(() => const DashboardScreen());
       });
@@ -101,7 +106,8 @@ class LoginController extends GetxController {
           Get.snackbar("Oh Snap", "You are not an admin");
           return;
         } else {
-          localStorage.write("user", r.toJson());
+          _userController.setUser(r);
+          Navigator.of(Get.overlayContext!).pop();
           Get.offAllNamed(DashboardScreen.routeName);
         }
       });

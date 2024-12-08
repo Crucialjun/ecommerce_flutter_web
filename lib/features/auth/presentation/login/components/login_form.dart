@@ -89,7 +89,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.saveAndValidate()) {
-                      _controller.signUpUser(
+                      _controller.signInUser(
                           rememberMe: _controller.rememberMe.value,
                           email: _formKey.currentState!.value['email'],
                           password: _formKey.currentState!.value['password']);

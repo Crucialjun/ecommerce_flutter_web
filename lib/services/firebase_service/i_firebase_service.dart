@@ -30,6 +30,8 @@ class IFirebaseService implements FirebaseService {
   Future<Either<Failure, User?>> signInWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
+      await _firebaseAuth.setPersistence(Persistence.LOCAL);
+
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -73,8 +75,9 @@ class IFirebaseService implements FirebaseService {
   Future<Either<Failure, User?>> signUpWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await _firebaseAuth.setPersistence(Persistence.LOCAL);
+
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -104,7 +107,7 @@ class IFirebaseService implements FirebaseService {
     try {
       final res = await _db
           .collection(dbName)
-          .doc(user["uid"])
+          .doc(user["id"])
           .set(user)
           .onError((error, stackTrace) => throw Failure(
               "Error adding user to database: ${error.toString()}"));
@@ -120,7 +123,7 @@ class IFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<Either<Failure, DocumentSnapshot<Map<String,dynamic>>>> getUserFromDb(
+  Future<Either<Failure, DocumentSnapshot<Map<String, dynamic>>>> getUserFromDb(
       {required String collectionName, required String uid}) async {
     try {
       Logger().i(
