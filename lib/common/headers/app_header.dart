@@ -5,6 +5,7 @@ import 'package:ecommerce_flutter_web/core/locator.dart';
 import 'package:ecommerce_flutter_web/features/user_controller.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AppHeader extends StatelessWidget implements PreferredSizeWidget {
@@ -14,7 +15,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userController = locator<UserController>();
+    final userController = UserController.to;
     return Container(
       padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.md, vertical: AppSizes.sm),

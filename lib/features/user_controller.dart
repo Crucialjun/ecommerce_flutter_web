@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 class UserController extends GetxController {
+  static UserController get to => Get.find();
   RxBool isLoading = false.obs;
 
   Rx<UserModel> appuser = UserModel.empty().obs;
@@ -18,26 +19,39 @@ class UserController extends GetxController {
 
   @override
   void onInit() {
+    Logger().i("User Controller Init");
     getUser();
     super.onInit();
+    Logger().i("User Controller Init Done");
   }
 
-  void getUser() async {
+  @override
+  void onReady() {
+    Logger().i("User Controller Ready");
+    super.onReady();
+    Logger().i("User Controller Ready Done");
+  }
+
+  Future getUser() async {
     Logger().i("Getting user");
     isLoading.value = true;
-    final user = await _firebaseService.userAuthStatus();
+    final user = FirebaseAuth.instance.currentUser;
 
-    await user.fold((l) {
+    if (user == null) {
+      Logger().e("User not authenticated");
       isLoading.value = false;
-    }, (r) async {
+    } else {
       final res = await _firebaseService.getUserFromDb(
-          uid: r.uid, collectionName: "Users");
+          uid: user.uid, collectionName: "Users");
       res.fold((l) {
+        Logger().e(l.message);
         isLoading.value = false;
       }, (r) {
+        Logger().i("User: ${r.data()}");
         appuser.value = UserModel.fromDocumentSnapshot(r);
+        appuser.refresh();
         isLoading.value = false;
       });
-    });
+    }
   }
 }
