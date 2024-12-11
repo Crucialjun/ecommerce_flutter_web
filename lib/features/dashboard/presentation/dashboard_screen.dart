@@ -73,6 +73,9 @@ class DashboardScreen extends StatelessWidget {
           dividerThickness: 0,
           horizontalMargin: 12,
           dataRowHeight: 56,
+          sortAscending: true,
+          sortColumnIndex: 1,
+          sortArrowAlwaysVisible: true,
           headingTextStyle: Theme.of(context).textTheme.titleMedium,
           headingRowColor:
               const WidgetStatePropertyAll(AppColors.primaryBackground),
@@ -87,10 +90,12 @@ class DashboardScreen extends StatelessWidget {
           ),
           showCheckboxColumn: true,
           columns: const [
-            DataColumn(
-              label: Text('Column 1'),
+            DataColumn2(
+              label: Text(
+                'Column 1',
+              ),
             ),
-            DataColumn(
+            DataColumn2(
               label: Text('Column 2'),
             ),
           ],
