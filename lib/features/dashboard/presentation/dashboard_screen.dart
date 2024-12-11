@@ -32,14 +32,20 @@ class DashboardScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Total Sales',
-                        style: Theme.of(context).textTheme.titleMedium,
+                        ' Sales',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: AppSizes.spaceBtwSections),
-                      Text(
-                        '\$ 1,000,000',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '\$ 256.0',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 )
