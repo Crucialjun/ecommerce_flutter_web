@@ -55,6 +55,7 @@ dependencies:
   dio: ^5.7.0
   shimmer: ^3.0.0
   data_table_2: ^2.5.16
+  fl_chart: ^0.69.2
 
 dev_dependencies:
   flutter_test:
