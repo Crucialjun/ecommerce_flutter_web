@@ -136,5 +136,31 @@ class DashboardDesktop extends StatelessWidget {
     ));
   }
 
-  buildTitlesData() {}
+  FlTitlesData buildTitlesData() {
+    return FlTitlesData(
+        show: true,
+        bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+          showTitles: true,
+          getTitlesWidget: (value, meta) {
+            final days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+            final index = value.toInt() % 7;
+
+            final day = days[index];
+
+            return SideTitleWidget(
+              axisSide: AxisSide.bottom,
+              space: 0,
+              child: Text(day),
+            );
+          },
+        )),
+        leftTitles: AxisTitles(
+          sideTitles:
+              SideTitles(showTitles: true, interval: 200, reservedSize: 50),
+        ),
+        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)));
+  }
 }
