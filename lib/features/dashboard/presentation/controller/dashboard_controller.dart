@@ -11,8 +11,8 @@ class DashboardController extends GetxController {
       id: '1',
       orderNumber: 'ORD-001',
       customerName: 'John Doe',
-      orderDate: DateTime.now(),
-      deliveryDate: DateTime.now(),
+      orderDate: DateTime(2024, 12, 17),
+      deliveryDate: DateTime(2024, 12, 17),
       status: OrderStatusEnum.delivered,
       totalAmount: 100.0,
     ),
@@ -20,8 +20,8 @@ class DashboardController extends GetxController {
       id: '2',
       orderNumber: 'ORD-002',
       customerName: 'Jane Doe',
-      orderDate: DateTime.now(),
-      deliveryDate: DateTime.now(),
+      orderDate: DateTime(2024, 12, 18),
+      deliveryDate: DateTime(2024, 12, 18),
       status: OrderStatusEnum.shipped,
       totalAmount: 200.0,
     ),
@@ -29,8 +29,8 @@ class DashboardController extends GetxController {
       id: '3',
       orderNumber: 'ORD-003',
       customerName: 'John Doe',
-      orderDate: DateTime.now(),
-      deliveryDate: DateTime.now(),
+      orderDate: DateTime(2024, 12, 19),
+      deliveryDate: DateTime(2024, 12, 19),
       status: OrderStatusEnum.processing,
       totalAmount: 300.0,
     ),
@@ -42,6 +42,33 @@ class DashboardController extends GetxController {
       deliveryDate: DateTime.now(),
       status: OrderStatusEnum.pending,
       totalAmount: 400.0,
+    ),
+    OrderModel(
+      id: '5',
+      orderNumber: 'ORD-005',
+      customerName: 'John Doe',
+      orderDate: DateTime(2024, 12, 21),
+      deliveryDate: DateTime(2024, 12, 21),
+      status: OrderStatusEnum.delivered,
+      totalAmount: 500.0,
+    ),
+    OrderModel(
+      id: '6',
+      orderNumber: 'ORD-006',
+      customerName: 'Jane Doe',
+      orderDate: DateTime(2024, 12, 22),
+      deliveryDate: DateTime(2024, 12, 22),
+      status: OrderStatusEnum.shipped,
+      totalAmount: 600.0,
+    ),
+    OrderModel(
+      id: '7',
+      orderNumber: 'ORD-007',
+      customerName: 'John Doe',
+      orderDate: DateTime(2024, 12, 16),
+      deliveryDate: DateTime(2024, 12, 16),
+      status: OrderStatusEnum.processing,
+      totalAmount: 700.0,
     ),
   ];
 
@@ -60,8 +87,8 @@ class DashboardController extends GetxController {
 
       if (orderWeekStart.isBefore(DateTime.now()) &&
           orderWeekStart.add(Duration(days: 7)).isAfter(DateTime.now())) {
-       int index = (order.orderDate.weekday - 1) % 7;
-       index = index < 0 ? index + 7 : index;
+        int index = (order.orderDate.weekday - 1) % 7;
+        index = index < 0 ? index + 7 : index;
         weeklySales[index] += order.totalAmount;
       }
     }
