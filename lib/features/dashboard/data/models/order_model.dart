@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class OrderModel extends Equatable {
@@ -31,9 +32,12 @@ class OrderModel extends Equatable {
 }
 
 enum OrderStatusEnum {
-  pending,
-  processing,
-  shipped,
-  delivered,
-  cancelled,
+  pending("Pending"),
+  processing ("Processing"),
+  shipped ("Shipped"),
+  delivered ("Delivered"),
+  cancelled ("Cancelled");
+
+  const OrderStatusEnum(this.value);
+  final String value;
 }

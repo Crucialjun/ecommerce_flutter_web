@@ -5,6 +5,10 @@ class DashboardController extends GetxController {
   static DashboardController get to => Get.find();
 
   final RxList<double> weeklySales = <double>[].obs;
+  final RxMap<OrderStatusEnum, int> orderStatusData =
+      <OrderStatusEnum, int>{}.obs;
+  final RxMap<OrderStatusEnum, double> totalAmounts =
+      <OrderStatusEnum, double>{}.obs;
 
   static final List<OrderModel> orders = [
     OrderModel(
@@ -75,6 +79,8 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     _calculateWeeklySales();
+    _calculateOrderStatusData();
+
     super.onInit();
   }
 
@@ -92,5 +98,21 @@ class DashboardController extends GetxController {
         weeklySales[index] += order.totalAmount;
       }
     }
+  }
+
+  void _calculateOrderStatusData() {
+    orderStatusData.clear();
+
+    totalAmounts.value = {
+      for (var status in OrderStatusEnum.values) status: 0.0
+    };
+
+    for (var order in orders) {
+      orderStatusData[order.status] = (orderStatusData[order.status] ?? 0) + 1;
+      totalAmounts[order.status] =
+          (totalAmounts[order.status] ?? 0) + order.totalAmount;
+    }
+
+    
   }
 }

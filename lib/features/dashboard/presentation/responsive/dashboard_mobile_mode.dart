@@ -1,5 +1,8 @@
+import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/app_dashboard_card.dart';
+import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/order_status_graph.dart';
+import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/weekly_sales.dart';
 import 'package:flutter/material.dart';
 
 class DashboardMobile extends StatelessWidget {
@@ -28,7 +31,15 @@ class DashboardMobile extends StatelessWidget {
             AppDashboardCard(),
             SizedBox(height: AppSizes.spaceBtwItems),
             AppDashboardCard(),
-            SizedBox(height: AppSizes.spaceBtwItems),
+
+            SizedBox(height: AppSizes.spaceBtwSections),
+
+            // Order Status Graph
+            WeeklySales(),
+            SizedBox(height: AppSizes.spaceBtwSections),
+            AppRoundedContainer(),
+            SizedBox(height: AppSizes.spaceBtwSections),
+            OrderStatusGraph(),
           ],
         ),
       ),
