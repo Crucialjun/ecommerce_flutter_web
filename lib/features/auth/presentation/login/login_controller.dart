@@ -20,7 +20,6 @@ class LoginController extends GetxController {
   final hidePassword = true.obs;
   final rememberMe = false.obs;
   final localStorage = GetStorage();
-
   final _dialogService = locator<DialogAndSheetService>();
   final _networkService = INetworkService();
 
