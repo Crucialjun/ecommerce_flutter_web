@@ -1,8 +1,15 @@
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
+import 'package:ecommerce_flutter_web/core/locator.dart';
+import 'package:ecommerce_flutter_web/features/user_controller.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
+import 'package:ecommerce_flutter_web/utils/shimmer_effect.dart';
+import 'package:extended_image/extended_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:logger/logger.dart';
 
 class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   const AppHeader({super.key, required this.scaffoldKey});
@@ -11,6 +18,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = UserController.to;
     return Container(
       padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.md, vertical: AppSizes.sm),
@@ -64,21 +72,52 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage(AppAssets.defaultProfile),
-              ),
-              const SizedBox(width: AppSizes.sm),
+              Obx(() => ExtendedImage.network(
+                    userController.appuser.value.profilePicture,
+                    width: 40,
+                    height: 40,
+                    shape: BoxShape.circle,
+                    loadStateChanged: (state) {
+                      Logger().i("state: ${state.extendedImageLoadState}");
+                      if (state.extendedImageLoadState == LoadState.loading) {
+                        return const CircularProgressIndicator();
+                      } else if (state.extendedImageLoadState ==
+                          LoadState.failed) {
+                        ExtendedImage.asset(
+                          AppAssets.defaultProfile,
+                          width: 40,
+                          height: 40,
+                          shape: BoxShape.circle,
+                        );
+                      }
+                      Image.asset(
+                        AppAssets.defaultProfile,
+                        width: 40,
+                        height: 40,
+                      );
+                      return null;
+                    },
+                  )),
               if (!AppDeviceUtils.isMobileScreen(context))
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('John Doe',
-                        style: Theme.of(context).textTheme.titleLarge),
-                    Text('nich.otieno@gmail.com',
-                        style: Theme.of(context).textTheme.labelMedium),
+                    userController.isLoading.value
+                        ? const AppShimmerEffect(
+                            height: 13,
+                            width: 50,
+                          )
+                        : Text(userController.appuser.value.firstName,
+                            style: Theme.of(context).textTheme.titleLarge),
+                    userController.isLoading.value
+                        ? const AppShimmerEffect(
+                            height: 13,
+                            width: 50,
+                          )
+                        : Text('nich.otieno@gmail.com',
+                            style: Theme.of(context).textTheme.labelMedium),
                   ],
                 ),
             ],

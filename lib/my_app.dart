@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter_web/common/general_bindings.dart';
 import 'package:ecommerce_flutter_web/constants/text_strings.dart';
 import 'package:ecommerce_flutter_web/core/routes.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/login/login_screen.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       //darkTheme: AppTheme.darkTheme,
       getPages: Routes.routes,
       debugShowCheckedModeBanner: false,
+      initialBinding: GeneralBindings(),
 
       //initialRoute: LoginScreen.routeName,
       unknownRoute: GetPage(

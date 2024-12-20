@@ -14,5 +14,6 @@ Future<void> main() async {
   await GetStorage.init();
   await setupLocator();
   usePathUrlStrategy();
+  
   runApp(const MyApp());
 }

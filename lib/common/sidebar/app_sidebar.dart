@@ -3,7 +3,7 @@ import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+
 
 class AppSidebar extends StatelessWidget {
   const AppSidebar({super.key});
@@ -42,12 +42,12 @@ class AppSidebar extends StatelessWidget {
                     ),
                     const SidebarMenuItem(
                       route: "/",
-                      icon: Iconsax.status,
+                      icon: Icons.star_outline_sharp,
                       title: "Dashboard",
                     ),
                     const SidebarMenuItem(
                       route: "/media",
-                      icon: Iconsax.image,
+                      icon: Icons.camera,
                       title: "Media",
                     ),
                   ],

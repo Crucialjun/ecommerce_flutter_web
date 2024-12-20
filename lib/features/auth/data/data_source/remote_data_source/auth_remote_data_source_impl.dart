@@ -6,6 +6,7 @@ import 'package:ecommerce_flutter_web/features/auth/data/data_source/remote_data
 import 'package:ecommerce_flutter_web/features/auth/domain/params/login_params.dart';
 import 'package:ecommerce_flutter_web/services/firebase_service/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logger/logger.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final _firebaseService = locator<FirebaseService>();
@@ -46,7 +47,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final res =
         await _firebaseService.getUserFromDb(collectionName: "Users", uid: uid);
 
-    return res.fold(
-        (l) => Left(l), (r) => Right(UserModel.fromDocumentSnapshot(r)));
+    return res.fold((l) => Left(l), (r) {
+      try {
+        final user = UserModel.fromDocumentSnapshot(r);
+        return Right(user);
+      } catch (e) {
+        Logger().e(e.toString());
+        return Left(Failure(e.toString()));
+      }
+    });
   }
 }

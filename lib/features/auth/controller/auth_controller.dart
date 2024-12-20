@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:ecommerce_flutter_web/core/usecase.dart';
@@ -13,24 +15,16 @@ class AuthController extends GetxController {
 
   bool get isUserLoggedIn => _isUserLoggedIn;
 
+  late StreamSubscription<User?> userSubscription;
+
   @override
-  void onReady() {
-    userStatus();
-    setPersistence();
-
-    super.onReady();
-  }
-
-  Future<Either<Failure, void>> setPersistence() async =>
-      await SetAuthPersistenceUsecase().call(Persistence.LOCAL);
-
-  Future<void> userStatus() async {
-    await userRes.then((value) {
-      value.fold((l) {
-        _isUserLoggedIn = false;
-      }, (r) {
+  void onInit() {
+ 
+    userSubscription = FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user != null) {
         _isUserLoggedIn = true;
-      });
+      }
     });
+    super.onInit();
   }
 }

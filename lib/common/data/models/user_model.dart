@@ -60,8 +60,8 @@ class UserModel extends UserEntity {
       phoneNumber: json['phoneNumber'] ?? "",
       profilePicture: json['profilePicture'] ?? "",
       role: AppRoleEnum.fromString(json['role'] ?? ""),
-      createdAt: json['createdAt'] ?? DateTime.now(),
-      updatedAt: json['updatedAt'] ?? DateTime.now(),
+      createdAt: json['createdAt'].toDate() ?? DateTime.now(),
+      updatedAt: json['updatedAt'].toDate() ?? DateTime.now(),
     );
   }
 
