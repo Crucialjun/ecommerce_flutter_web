@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/controller/dashboard_controller.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/app_dashboard_card.dart';
+import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/dashboard_order_table.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/order_status_graph.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/weekly_sales.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
@@ -57,7 +58,18 @@ class DashboardDesktop extends StatelessWidget {
                     children: [
                       WeeklySales(),
                       SizedBox(height: AppSizes.spaceBtwSections),
-                      AppRoundedContainer()
+                      AppRoundedContainer(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Recent Orders',
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            const SizedBox(height: AppSizes.spaceBtwSections),
+                            DashboardOrderTable()
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
