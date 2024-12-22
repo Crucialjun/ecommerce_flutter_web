@@ -21,12 +21,11 @@ class OrderRows extends DataTableSource {
             )),
             DataCell(
                 Text(DashboardController.orders[index].orderDate.toString())),
-            DataCell(Text(DashboardController.orders[index].customerName)),
             DataCell(Text("7 Items")),
             DataCell(AppRoundedContainer(
               radius: AppSizes.cardRadiusSm,
               padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.xs, vertical: AppSizes.md),
+                  horizontal: AppSizes.md, vertical: AppSizes.xs),
               backgroundColor: DashboardController.orders[index].status.value ==
                       "Delivered"
                   ? Colors.green.withValues(alpha: 0.1)
@@ -64,14 +63,11 @@ class OrderRows extends DataTableSource {
   }
 
   @override
-  // TODO: implement isRowCountApproximate
-  bool get isRowCountApproximate => throw UnimplementedError();
+  bool get isRowCountApproximate => false;
 
   @override
-  // TODO: implement rowCount
-  int get rowCount => throw UnimplementedError();
+  int get rowCount => DashboardController.orders.length;
 
   @override
-  // TODO: implement selectedRowCount
-  int get selectedRowCount => throw UnimplementedError();
+  int get selectedRowCount => 0;
 }

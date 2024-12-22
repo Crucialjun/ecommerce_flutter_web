@@ -30,7 +30,7 @@ class DashboardOrderTable extends StatelessWidget {
         ],
         source: OrderRows(),
         rowsPerPage: 10,
-        dataRowHeight: AppSizes.xl * 1.2,
+        dataRowHeight: AppSizes.xl * 2,
         sortAscending: true,
         minWidth: 700,
       ),
