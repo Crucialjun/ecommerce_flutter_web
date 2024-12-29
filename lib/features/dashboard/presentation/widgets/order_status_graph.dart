@@ -1,12 +1,12 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/data/models/order_model.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/controller/dashboard_controller.dart';
-import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OrderStatusGraph extends StatelessWidget {
   const OrderStatusGraph({super.key});

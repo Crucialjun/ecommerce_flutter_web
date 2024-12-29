@@ -217,7 +217,7 @@ class IFirebaseService implements FirebaseService {
 
   @override
   Future<Either<Failure, void>> signOut() {
-    // TODO: implement signOut
+   
     throw UnimplementedError();
   }
 

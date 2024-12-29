@@ -1,15 +1,10 @@
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
-import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
-import 'package:ecommerce_flutter_web/features/dashboard/presentation/controller/dashboard_controller.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/app_dashboard_card.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/dashboard_order_table.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/order_status_graph.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/widgets/weekly_sales.dart';
-import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class DashboardDesktop extends StatelessWidget {
   const DashboardDesktop({

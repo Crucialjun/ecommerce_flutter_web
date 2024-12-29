@@ -70,7 +70,7 @@ class WeeklySales extends StatelessWidget {
                     ),
                     touchCallback: AppDeviceUtils.isDesktopScreen(context)
                         ? (barTouchEvent, response) {
-                            print("This is $response");
+                            //print("This is $response");
                           }
                         : null),
               ),

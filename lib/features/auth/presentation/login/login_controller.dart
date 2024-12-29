@@ -1,7 +1,6 @@
 import 'package:ecommerce_flutter_web/common/data/enums/app_role_enum.dart';
 import 'package:ecommerce_flutter_web/common/data/models/user_model.dart';
 import 'package:ecommerce_flutter_web/core/locator.dart';
-import 'package:ecommerce_flutter_web/features/auth/controller/auth_controller.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/params/login_params.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/add_user_to_db_usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/usecases/get_user_from_db_usecase.dart';
@@ -11,7 +10,7 @@ import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_
 import 'package:ecommerce_flutter_web/features/user_controller.dart';
 import 'package:ecommerce_flutter_web/services/dialog_and_sheet_service/dialog_and_sheet_service.dart';
 import 'package:ecommerce_flutter_web/services/network_service/i_network_service.dart';
-import 'package:ecommerce_flutter_web/services/network_service/network_service.dart';
+
 import 'package:ecommerce_flutter_web/utils/dialogs/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +23,7 @@ class LoginController extends GetxController {
   final localStorage = GetStorage();
   final _dialogService = locator<DialogAndSheetService>();
   final _networkService = INetworkService();
-  final _authController = locator<AuthController>();
+  //final _authController = locator<AuthController>();
   final _userController = locator<UserController>();
 
   Future signUpUser({
@@ -79,7 +78,7 @@ class LoginController extends GetxController {
   }) async {
     final isConnected = await _networkService.isConnected();
     _dialogService.showAppDialog(
-        const LoadingDialog(message: "Loggin in to your  Admin Account..."));
+        const LoadingDialog(message: "Logging in to your  Admin Account..."));
 
     if (!isConnected) {
       Navigator.of(Get.overlayContext!).pop();

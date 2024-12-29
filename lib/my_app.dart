@@ -1,10 +1,7 @@
 import 'package:ecommerce_flutter_web/common/general_bindings.dart';
 import 'package:ecommerce_flutter_web/constants/text_strings.dart';
 import 'package:ecommerce_flutter_web/core/routes.dart';
-import 'package:ecommerce_flutter_web/features/auth/presentation/login/login_screen.dart';
-import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:ecommerce_flutter_web/theme/theme.dart';
-import 'package:ecommerce_flutter_web/utils/site_template.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';

@@ -44,7 +44,7 @@ class AppInputDecorationTheme {
     // constraints: const BoxConstraints.expand(height: TSizes.inputFieldHeight),
     labelStyle: const TextStyle().copyWith(fontSize: AppSizes.fontSizeMd, color: AppColors.white, fontFamily: 'Urbanist'),
     hintStyle: const TextStyle().copyWith(fontSize: AppSizes.fontSizeSm, color: AppColors.white, fontFamily: 'Urbanist'),
-    floatingLabelStyle: const TextStyle().copyWith(color: AppColors.white.withOpacity(0.8), fontFamily: 'Urbanist'),
+    floatingLabelStyle: const TextStyle().copyWith(color: AppColors.white.withValues(alpha : 0.8), fontFamily: 'Urbanist'),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
       borderSide: const BorderSide(width: 1, color: AppColors.darkGrey),

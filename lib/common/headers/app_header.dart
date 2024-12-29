@@ -1,12 +1,12 @@
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
-import 'package:ecommerce_flutter_web/core/locator.dart';
+
 import 'package:ecommerce_flutter_web/features/user_controller.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:ecommerce_flutter_web/utils/shimmer_effect.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:logger/logger.dart';
@@ -26,7 +26,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: AppColors.grey.withOpacity(0.5),
+            color: AppColors.grey.withValues(alpha :0.5),
             width: 1,
           ),
         ),

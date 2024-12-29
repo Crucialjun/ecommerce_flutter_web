@@ -1,4 +1,3 @@
-import 'package:data_table_2/data_table_2.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
