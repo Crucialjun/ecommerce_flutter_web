@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
@@ -10,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:universal_html/html.dart' as html;
 
 class MediaUploader extends StatelessWidget {
   const MediaUploader({super.key});
@@ -43,7 +47,22 @@ class MediaUploader extends StatelessWidget {
                           onHover: () {
                             print('File is over the Dropzone');
                           },
-                          onDropFile: (value) {},
+                          onDropFile: (value) async {
+                            if (value is html.File) {
+                              Logger().i('Dropped file: ${value.name}');
+                              final bytes = await mediaController
+                                  .dropzoneViewController
+                                  .getFileData(value);
+                              final image = ImageModel(
+                                fileName: value.name,
+                                url: "",
+                                file: value as html.File,
+                                folder: "",
+                                localImageToDisplay: Uint8List.fromList(bytes),
+                              );
+                              mediaController.images.add(image);
+                            }
+                          },
                           onCreated: (controller) => mediaController
                               .dropzoneViewController = controller,
                           onDropInvalid: (value) {
@@ -66,7 +85,9 @@ class MediaUploader extends StatelessWidget {
                             ),
                             const SizedBox(height: AppSizes.spaceBtwItems),
                             OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  mediaController.selectLocalImages();
+                                },
                                 child: const Text('Select Images')),
                           ],
                         )
