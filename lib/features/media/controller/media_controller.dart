@@ -7,5 +7,7 @@ class MediaController extends GetxController {
   late DropzoneViewController dropzoneViewController;
 
   final RxString selectedFolder = "folders".obs;
-  
+
+  final RxBool showImageUploaderSection = false.obs;
+
 }
