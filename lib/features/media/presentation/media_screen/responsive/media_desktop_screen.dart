@@ -45,7 +45,7 @@ class MediaDesktopScreen extends StatelessWidget {
               ),
               SizedBox(height: AppSizes.spaceBtwSections),
 
-              //Uploade area
+             
               MediaUploader(),
 
               //Media content

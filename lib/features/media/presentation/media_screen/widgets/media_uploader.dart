@@ -45,7 +45,7 @@ class MediaUploader extends StatelessWidget {
                           cursor: CursorType.Default,
                           operation: DragOperation.copy,
                           onHover: () {
-                            print('File is over the Dropzone');
+                            Logger().i('File is over the Dropzone');
                           },
                           onDropFile: (value) async {
                             if (value is html.File) {
