@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/media/controller/media_controller.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_folder_dropdown.dart';
+import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
@@ -79,6 +80,7 @@ class MediaUploader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,13 +107,23 @@ class MediaUploader extends StatelessWidget {
                       const SizedBox(width: AppSizes.spaceBtwItems),
                       TextButton(
                           onPressed: () {}, child: const Text('Remove All')),
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add),
-                        label: const Text('Upload Images'),
+                      SizedBox(
+                        width: AppSizes.spaceBtwItems,
                       ),
+                      AppDeviceUtils.isMobileScreen(context)
+                          ? const SizedBox.shrink()
+                          : SizedBox(
+                              width: AppSizes.buttonWidth,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: const Text('Upload'),
+                              ),
+                            ),
                     ],
-                  )
+                  ),
+                  SizedBox(
+                    width: AppSizes.spaceBtwItems,
+                  ),
                 ],
               ),
             ],
