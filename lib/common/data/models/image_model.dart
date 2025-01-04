@@ -54,6 +54,7 @@ class ImageModel {
   }
 
   factory ImageModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    if(snapshot.data() == null) return ImageModel(url: "", folder: "", fileName: "");
     final data = snapshot.data();
     return ImageModel(
       id: snapshot.id,
