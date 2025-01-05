@@ -25,19 +25,19 @@ class MediaController extends GetxController {
 
     if (files.isNotEmpty) {
       for (final file in files) {
-        if (file is html.File) {
-          Logger().i('Dropped file: ${file.name}');
-          final bytes = await dropzoneViewController.getFileData(file);
-          final image = ImageModel(
-            fileName: file.name,
-            url: "",
-            file: file as html.File,
-            folder: "",
-            localImageToDisplay: Uint8List.fromList(bytes),
-          );
-          images.add(image);
-        }
+        Logger().i('Dropped file: ${file.name}');
+        final bytes = await dropzoneViewController.getFileData(file);
+        final image = ImageModel(
+          fileName: file.name,
+          url: "",
+          file: html.File(bytes, file.name),
+          folder: "",
+          localImageToDisplay: Uint8List.fromList(bytes),
+        );
+        images.add(image);
       }
     }
   }
+
+  
 }

@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
@@ -68,7 +70,26 @@ class MediaUploader extends StatelessWidget {
                           onDropInvalid: (value) {
                             Logger().e('Invalid file type');
                           },
-                          onDropFiles: (value) => Logger().i('Drop multiple'),
+                          onDropFiles: (value) async {
+                            if (value != null && value.isNotEmpty) {
+                              for (final file in value) {
+                                Logger().i('Dropped file: ${file.name}');
+                                final bytes = await mediaController
+                                    .dropzoneViewController
+                                    .getFileData(file);
+
+                                final image = ImageModel(
+                                  fileName: file.name,
+                                  url: "",
+                                  file: html.File(bytes, file.name),
+                                  folder: "",
+                                  localImageToDisplay:
+                                      Uint8List.fromList(bytes),
+                                );
+                                mediaController.images.add(image);
+                              }
+                            }
+                          },
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.min,
@@ -99,130 +120,98 @@ class MediaUploader extends StatelessWidget {
 
               //locally selected Images
               const SizedBox(height: AppSizes.spaceBtwItems),
-
-              AppRoundedContainer(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //Folders Dropdown
-                            Text(
-                              'Selected Folder',
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
-                            SizedBox(
-                              width: AppSizes.spaceBtwItems,
-                            ),
-                            MediaFolderDropdown(
-                              onSelected: (p0) {
-                                if (p0 != null) {
-                                  mediaController.selectedFolder.value = p0;
-                                }
-                              },
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(width: AppSizes.spaceBtwItems),
-                            TextButton(
-                                onPressed: () {},
-                                child: const Text('Remove All')),
-                            SizedBox(
-                              width: AppSizes.spaceBtwItems,
-                            ),
-                            AppDeviceUtils.isMobileScreen(context)
-                                ? const SizedBox.shrink()
-                                : SizedBox(
-                                    width: AppSizes.buttonWidth,
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: const Text('Upload'),
+              if (mediaController.images.isNotEmpty)
+                AppRoundedContainer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              //Folders Dropdown
+                              Text(
+                                'Selected Folder',
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
+                              ),
+                              SizedBox(
+                                width: AppSizes.spaceBtwItems,
+                              ),
+                              MediaFolderDropdown(
+                                onSelected: (p0) {
+                                  if (p0 != null) {
+                                    mediaController.selectedFolder.value = p0;
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(width: AppSizes.spaceBtwItems),
+                              TextButton(
+                                  onPressed: () {
+                                    mediaController.images.clear();
+                                  },
+                                  child: const Text('Remove All')),
+                              SizedBox(
+                                width: AppSizes.spaceBtwItems,
+                              ),
+                              AppDeviceUtils.isMobileScreen(context)
+                                  ? const SizedBox.shrink()
+                                  : SizedBox(
+                                      width: AppSizes.buttonWidth,
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text('Upload'),
+                                      ),
                                     ),
-                                  ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: AppSizes.spaceBtwItems,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSizes.spaceBtwItems),
-                    Wrap(
-                      alignment: WrapAlignment.start,
-                      spacing: AppSizes.spaceBtwItems / 2,
-                      runSpacing: AppSizes.spaceBtwItems / 2,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(AppSizes.sm),
-                          decoration:
-                              BoxDecoration(color: AppColors.primaryBackground),
-                          child: ExtendedImage.asset(
-                            AppAssets.defaultProfile,
+                            ],
+                          ),
+                          SizedBox(
+                            width: AppSizes.spaceBtwItems,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: AppSizes.spaceBtwItems),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: AppSizes.spaceBtwItems / 2,
+                        runSpacing: AppSizes.spaceBtwItems / 2,
+                        children: mediaController.images
+                            .where((image) => image.localImageToDisplay != null)
+                            .map((image) {
+                          return Container(
                             width: 90,
                             height: 90,
-                            fit: BoxFit.contain,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(AppSizes.sm),
-                          decoration:
-                              BoxDecoration(color: AppColors.primaryBackground),
-                          child: ExtendedImage.asset(
-                            AppAssets.defaultProfile,
-                            width: 90,
-                            height: 90,
-                            fit: BoxFit.contain,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(AppSizes.sm),
-                          decoration:
-                              BoxDecoration(color: AppColors.primaryBackground),
-                          child: ExtendedImage.asset(
-                            AppAssets.defaultProfile,
-                            width: 90,
-                            height: 90,
-                            fit: BoxFit.contain,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(AppSizes.sm),
-                          decoration:
-                              BoxDecoration(color: AppColors.primaryBackground),
-                          child: ExtendedImage.asset(
-                            AppAssets.defaultProfile,
-                            width: 90,
-                            height: 90,
-                            fit: BoxFit.contain,
-                            shape: BoxShape.circle,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: AppSizes.spaceBtwItems,
-                    ),
-                    !AppDeviceUtils.isMobileScreen(context)
-                        ? const SizedBox.shrink()
-                        : SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Upload'),
+                            padding: EdgeInsets.all(AppSizes.sm),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryBackground),
+                            child: ExtendedImage.memory(
+                              image.localImageToDisplay!,
+                              fit: BoxFit.contain,
                             ),
-                          ),
-                  ],
-                ),
-              )
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(
+                        height: AppSizes.spaceBtwItems,
+                      ),
+                      !AppDeviceUtils.isMobileScreen(context)
+                          ? const SizedBox.shrink()
+                          : SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: const Text('Upload'),
+                              ),
+                            ),
+                    ],
+                  ),
+                )
             ],
           )
         : const SizedBox.shrink());
