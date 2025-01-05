@@ -83,4 +83,35 @@ class ImageModel {
       contentType: metadata.contentType,
     );
   }
+
+  //copy with
+  ImageModel copyWith({
+    String? id,
+    String? url,
+    String? folder,
+    int? sizeBytes,
+    String? mediaCategory,
+    String? fileName,
+    String? fullPath,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? contentType,
+    File? file,
+    Uint8List? localImageToDisplay,
+  }) {
+    return ImageModel(
+      id: id ?? this.id,
+      url: url ?? this.url,
+      folder: folder ?? this.folder,
+      sizeBytes: sizeBytes ?? this.sizeBytes,
+      mediaCategory: mediaCategory ?? this.mediaCategory,
+      fileName: fileName ?? this.fileName,
+      fullPath: fullPath ?? this.fullPath,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      contentType: contentType ?? this.contentType,
+      file: file ?? this.file,
+      localImageToDisplay: localImageToDisplay ?? this.localImageToDisplay,
+    );
+  }
 }

@@ -2,7 +2,7 @@ import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
-import 'package:ecommerce_flutter_web/features/media/controller/media_controller.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/controller/media_controller.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_folder_dropdown.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';

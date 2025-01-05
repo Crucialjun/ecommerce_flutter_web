@@ -1,12 +1,16 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce_flutter_web/common/data/dto/upload_image_response.dart';
 import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:ecommerce_flutter_web/services/firebase_service/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
+import 'package:universal_html/html.dart' as html;
 
 class IFirebaseService implements FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -144,36 +148,6 @@ class IFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<Either<Failure, String>> uploadFile(
-      {required String path, required File file}) async {
-    try {
-      Logger().i("Uploading file to path: $path");
-
-      final ref = storage.ref().child(path);
-
-      final uploadTask = await ref
-          .putFile(file)
-          .onError((error, stackTrace) {
-            throw Failure("Error uploading file: ${error.toString()}");
-          })
-          .whenComplete(() => Logger().i("File upload task complete"))
-          .timeout(const Duration(seconds: 60),
-              onTimeout: () =>
-                  throw const Failure("File upload task timed out"));
-
-      final url = await uploadTask.ref.getDownloadURL();
-
-      return Right(url);
-    } on FirebaseException catch (e) {
-      _logger.e(e.toString());
-      return Left(Failure(e.toString()));
-    } catch (e) {
-      _logger.e(e.toString());
-      return Left(Failure(e.toString()));
-    }
-  }
-
-  @override
   Future<Either<Failure, void>> updateUserOnDb(
       {required Map<String, dynamic> user, required String dbName}) async {
     try {
@@ -198,11 +172,8 @@ class IFirebaseService implements FirebaseService {
   Future<Either<Failure, void>> addProductToDb(
       {required Map<String, dynamic> product, required String dbName}) async {
     try {
-      final res = await _db
-          .collection(dbName)
-          .doc(product["id"])
-          .set(product)
-          .onError((error, stackTrace) => throw Failure(
+      final res = await _db.collection(dbName).add(product).onError(
+          (error, stackTrace) => throw Failure(
               "Error adding product to database: ${error.toString()}"));
 
       return Right(res);
@@ -217,7 +188,6 @@ class IFirebaseService implements FirebaseService {
 
   @override
   Future<Either<Failure, void>> signOut() {
-   
     throw UnimplementedError();
   }
 
@@ -228,6 +198,46 @@ class IFirebaseService implements FirebaseService {
       await _firebaseAuth.setPersistence(persistence);
       return const Right(null);
     } on FirebaseAuthException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UploadImageResponse>> uploadFile(
+      {required String path,
+      required html.File file,
+      required String imageName}) async {
+    try {
+      Logger().i("Uploading file to path: $path");
+
+      final ref = storage.ref(
+        "$path/$imageName",
+      );
+
+      await ref.putBlob(file);
+
+      final url = await ref.getDownloadURL();
+
+      final FullMetadata metadata = await ref.getMetadata();
+
+      return Right(UploadImageResponse(imageUrl: url, metadata: metadata));
+    } on FirebaseException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on SocketException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on HttpException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on FormatException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on PlatformException catch (e) {
       _logger.e(e.toString());
       return Left(Failure(e.toString()));
     } catch (e) {

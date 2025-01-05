@@ -1,6 +1,6 @@
 import 'package:ecommerce_flutter_web/common/widgets/breadcrumbs_with_heading.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
-import 'package:ecommerce_flutter_web/features/media/controller/media_controller.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/controller/media_controller.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_content.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_uploader.dart';
 import 'package:flutter/material.dart';

@@ -10,12 +10,14 @@ class LoadingDialog extends StatelessWidget {
       required this.message,
       this.showAction = false,
       this.onAction,
+      this.animationAsset = AppAssets.decorAnimation,
       this.actionText});
 
   final String message;
   final bool showAction;
   final VoidCallback? onAction;
   final String? actionText;
+  final String animationAsset;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class LoadingDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset(
-            AppAssets.decorAnimation,
+            animationAsset,
             height: MediaQuery.of(context).size.height * 0.5,
             fit: BoxFit.cover,
           ),

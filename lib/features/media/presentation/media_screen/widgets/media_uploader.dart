@@ -1,13 +1,10 @@
-import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
-import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
-import 'package:ecommerce_flutter_web/features/media/controller/media_controller.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/controller/media_controller.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_folder_dropdown.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:extended_image/extended_image.dart';
@@ -62,7 +59,7 @@ class MediaUploader extends StatelessWidget {
                                 folder: "",
                                 localImageToDisplay: Uint8List.fromList(bytes),
                               );
-                              mediaController.images.add(image);
+                              mediaController.selectedImagesToUpload.add(image);
                             }
                           },
                           onCreated: (controller) => mediaController
@@ -86,7 +83,8 @@ class MediaUploader extends StatelessWidget {
                                   localImageToDisplay:
                                       Uint8List.fromList(bytes),
                                 );
-                                mediaController.images.add(image);
+                                mediaController.selectedImagesToUpload
+                                    .add(image);
                               }
                             }
                           },
@@ -120,7 +118,7 @@ class MediaUploader extends StatelessWidget {
 
               //locally selected Images
               const SizedBox(height: AppSizes.spaceBtwItems),
-              if (mediaController.images.isNotEmpty)
+              if (mediaController.selectedImagesToUpload.isNotEmpty)
                 AppRoundedContainer(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +152,8 @@ class MediaUploader extends StatelessWidget {
                               const SizedBox(width: AppSizes.spaceBtwItems),
                               TextButton(
                                   onPressed: () {
-                                    mediaController.images.clear();
+                                    mediaController.selectedImagesToUpload
+                                        .clear();
                                   },
                                   child: const Text('Remove All')),
                               SizedBox(
@@ -165,7 +164,9 @@ class MediaUploader extends StatelessWidget {
                                   : SizedBox(
                                       width: AppSizes.buttonWidth,
                                       child: ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          mediaController.uploadImagesConfirm();
+                                        },
                                         child: const Text('Upload'),
                                       ),
                                     ),
@@ -181,7 +182,7 @@ class MediaUploader extends StatelessWidget {
                         alignment: WrapAlignment.start,
                         spacing: AppSizes.spaceBtwItems / 2,
                         runSpacing: AppSizes.spaceBtwItems / 2,
-                        children: mediaController.images
+                        children: mediaController.selectedImagesToUpload
                             .where((image) => image.localImageToDisplay != null)
                             .map((image) {
                           return Container(
@@ -205,7 +206,9 @@ class MediaUploader extends StatelessWidget {
                           : SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  mediaController.uploadImagesConfirm();
+                                },
                                 child: const Text('Upload'),
                               ),
                             ),
