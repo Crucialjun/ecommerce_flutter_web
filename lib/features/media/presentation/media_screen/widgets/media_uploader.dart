@@ -55,7 +55,7 @@ class MediaUploader extends StatelessWidget {
                               final image = ImageModel(
                                 fileName: value.name,
                                 url: "",
-                                file: value as html.File,
+                                file: bytes,
                                 folder: "",
                                 localImageToDisplay: Uint8List.fromList(bytes),
                               );
@@ -78,7 +78,7 @@ class MediaUploader extends StatelessWidget {
                                 final image = ImageModel(
                                   fileName: file.name,
                                   url: "",
-                                  file: html.File(bytes, file.name),
+                                  file: bytes,
                                   folder: "",
                                   localImageToDisplay:
                                       Uint8List.fromList(bytes),

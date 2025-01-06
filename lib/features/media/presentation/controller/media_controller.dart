@@ -5,7 +5,11 @@ import 'package:ecommerce_flutter_web/common/dialogs/default_dialog.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/core/locator.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_images_params.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_more_images_params.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/params/upload_media_to_cloud_params.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/usecases/fetch_images_usecase.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/usecases/fetch_more_images_usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/upoad_media_usecase.dart';
 import 'package:ecommerce_flutter_web/services/dialog_and_sheet_service/dialog_and_sheet_service.dart';
 import 'package:ecommerce_flutter_web/utils/dialogs/loading_dialog.dart';
@@ -18,9 +22,14 @@ import 'package:universal_html/html.dart' as html;
 class MediaController extends GetxController {
   static MediaController get instance => Get.find();
 
+  final RxBool loading = false.obs;
+
   late DropzoneViewController dropzoneViewController;
 
   final RxString selectedFolder = "folders".obs;
+
+  final int initialLoadCount = 20;
+  final int loadMoreCount = 25;
 
   final RxBool showImageUploaderSection = false.obs;
 
@@ -47,7 +56,7 @@ class MediaController extends GetxController {
         final image = ImageModel(
           fileName: file.name,
           url: "",
-          file: html.File(bytes, file.name),
+          file: bytes,
           folder: "",
           localImageToDisplay: Uint8List.fromList(bytes),
         );
@@ -181,5 +190,87 @@ class MediaController extends GetxController {
       default:
         return "/Others";
     }
+  }
+
+  void getMediaImages() async {
+    loading.value = true;
+
+    RxList<ImageModel> targetList = <ImageModel>[].obs;
+
+    switch (selectedFolder.value) {
+      case "products":
+        targetList = allProductImages;
+        break;
+      case "banners":
+        targetList = allBannerImages;
+        break;
+      case "brands":
+        targetList = allBrandImages;
+        break;
+      case "categories":
+        targetList = allCategoryImages;
+        break;
+      case "users":
+        targetList = allUserImages;
+        break;
+      default:
+        targetList = allImages;
+    }
+
+    final images = await FetchImagesUsecase().call(FetchImagesParams(
+      category: selectedFolder.value,
+      loadCount: initialLoadCount,
+    ));
+
+    images.fold((l) {
+      Logger().e('Error fetching images: $l');
+      loading.value = false;
+    }, (r) {
+      targetList.clear();
+      targetList.addAll(r);
+      loading.value = false;
+    });
+  }
+
+  void loadMoreImages() async {
+    loading.value = true;
+
+    RxList<ImageModel> targetList = <ImageModel>[].obs;
+
+    switch (selectedFolder.value) {
+      case "products":
+        targetList = allProductImages;
+        break;
+      case "banners":
+        targetList = allBannerImages;
+        break;
+      case "brands":
+        targetList = allBrandImages;
+        break;
+      case "categories":
+        targetList = allCategoryImages;
+        break;
+      case "users":
+        targetList = allUserImages;
+        break;
+      default:
+        targetList = allImages;
+    }
+
+    final images = await FetchMoreImagesUsecase().call(FetchMoreImagesParams(
+      category: selectedFolder.value,
+      loadCount: loadMoreCount,
+      lastFetchedDate: targetList.isNotEmpty
+          ? targetList.last.createdAt ?? DateTime.now()
+          : DateTime.now(),
+    ));
+
+    images.fold((l) {
+      Logger().e('Error fetching images: $l');
+      loading.value = false;
+    }, (r) {
+      targetList.addAll(r);
+      loading.value = false;
+    });
   }
 }

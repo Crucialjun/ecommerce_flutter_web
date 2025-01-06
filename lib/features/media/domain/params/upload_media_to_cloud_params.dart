@@ -1,7 +1,9 @@
-import 'package:universal_html/html.dart';
+import 'dart:typed_data';
+
+
 
 class UploadMediaToCloudParams {
-  final File file;
+  final Uint8List file;
   final String path;
   final String imageName;
   final String category;

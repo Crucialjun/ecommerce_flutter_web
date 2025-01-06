@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_flutter_web/common/data/dto/upload_image_response.dart';
+import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
 import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:ecommerce_flutter_web/services/firebase_service/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
@@ -209,22 +211,99 @@ class IFirebaseService implements FirebaseService {
   @override
   Future<Either<Failure, UploadImageResponse>> uploadFile(
       {required String path,
-      required html.File file,
+      required Uint8List file,
       required String imageName}) async {
     try {
       Logger().i("Uploading file to path: $path");
 
-      final ref = storage.ref(
-        "$path/$imageName",
-      );
+      Logger().i("Uploading file with name: $imageName");
 
-      await ref.putBlob(file);
+      final ref = storage.ref().child(path).child(imageName);
+
+      //convert the file to uint8list
+
+      
+
+      await ref.putData(file);
 
       final url = await ref.getDownloadURL();
 
       final FullMetadata metadata = await ref.getMetadata();
 
       return Right(UploadImageResponse(imageUrl: url, metadata: metadata));
+    } on FirebaseException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on SocketException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on HttpException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on FormatException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on PlatformException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ImageModel>>> fetchImagesFromDb(
+      {required String category, required int loadCount}) async {
+    try {
+      final querySnapshot = await _db
+          .collection("Images")
+          .where("mediaCategory", isEqualTo: category)
+          .orderBy("createdAt", descending: true)
+          .limit(loadCount)
+          .get();
+
+      return Right(querySnapshot.docs
+          .map((doc) => ImageModel.fromSnapshot(doc))
+          .toList());
+    } on FirebaseException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on SocketException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on HttpException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on FormatException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on PlatformException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ImageModel>>> loadMoreImagesFromDatabase(
+      {required String category,
+      required int loadCount,
+      required DateTime lastFetchedDate}) async {
+    try {
+      final querySnapshot = await _db
+          .collection("Images")
+          .where("mediaCategory", isEqualTo: category)
+          .orderBy("createdAt", descending: true)
+          .startAfter([lastFetchedDate])
+          .limit(loadCount)
+          .get();
+
+      return Right(querySnapshot.docs
+          .map((doc) => ImageModel.fromSnapshot(doc))
+          .toList());
     } on FirebaseException catch (e) {
       _logger.e(e.toString());
       return Left(Failure(e.toString()));

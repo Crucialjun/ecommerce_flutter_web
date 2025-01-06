@@ -18,7 +18,7 @@ class ImageModel {
   final String? contentType;
 
   //not mapped
-  final File? file;
+  final Uint8List? file;
   RxBool isSelected = false.obs;
   final Uint8List? localImageToDisplay;
 
@@ -26,18 +26,17 @@ class ImageModel {
       {this.id = "",
       required this.url,
       required this.folder,
-       this.sizeBytes,
+      this.sizeBytes,
       required this.fileName,
-       this.fullPath,
-       this.createdAt,
-       this.updatedAt,
-       this.contentType,
-       this.file,
+      this.fullPath,
+      this.createdAt,
+      this.updatedAt,
+      this.contentType,
+      this.file,
       this.mediaCategory = "",
-       this.localImageToDisplay});
+      this.localImageToDisplay});
 
-
-      //to json
+  //to json
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -53,8 +52,12 @@ class ImageModel {
     };
   }
 
-  factory ImageModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
-    if(snapshot.data() == null) return ImageModel(url: "", folder: "", fileName: "");
+  factory ImageModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    if (snapshot.data() == null) {
+      return ImageModel(url: "", folder: "", fileName: "");
+    }
+
     final data = snapshot.data();
     return ImageModel(
       id: snapshot.id,
@@ -64,14 +67,19 @@ class ImageModel {
       mediaCategory: data['mediaCategory'],
       fileName: data['fileName'],
       fullPath: data['fullPath'],
-      createdAt: data['createdAt'],
-      updatedAt: data['updatedAt'],
+      createdAt: data['createdAt'] == null
+          ? DateTime.now()
+          : (data['createdAt'] as Timestamp).toDate(),
+      updatedAt: data["updatedAt"] == null
+          ? DateTime.now()
+          : (data['updatedAt'] as Timestamp).toDate(),
       contentType: data['contentType'],
     );
   }
 
   //from firebaseMetadata
-  factory ImageModel.fromFirebaseMetadata(FullMetadata metadata, String folder,String filename,String downloadUrl) {
+  factory ImageModel.fromFirebaseMetadata(FullMetadata metadata, String folder,
+      String filename, String downloadUrl) {
     return ImageModel(
       url: downloadUrl,
       folder: folder,
@@ -96,7 +104,7 @@ class ImageModel {
     DateTime? createdAt,
     DateTime? updatedAt,
     String? contentType,
-    File? file,
+    Uint8List? file,
     Uint8List? localImageToDisplay,
   }) {
     return ImageModel(

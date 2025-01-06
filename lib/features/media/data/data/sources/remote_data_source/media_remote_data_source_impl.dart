@@ -3,6 +3,8 @@ import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
 import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:ecommerce_flutter_web/core/locator.dart';
 import 'package:ecommerce_flutter_web/features/media/data/data/sources/remote_data_source/media_remote_data_source.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_images_params.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_more_images_params.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/params/upload_media_to_cloud_params.dart';
 import 'package:ecommerce_flutter_web/services/firebase_service/firebase_service.dart';
 
@@ -30,5 +32,19 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
         );
       },
     );
+  }
+
+  @override
+  Future<Either<Failure, List<ImageModel>>> fetchImages({required FetchImagesParams params}) {
+    return _firebaseService.fetchImagesFromDb(
+        category: params.category, loadCount: params.loadCount);
+  }
+
+  @override
+  Future<Either<Failure, List<ImageModel>>> loadMoreImages({required FetchMoreImagesParams params}) {
+    return _firebaseService.loadMoreImagesFromDatabase(
+        category: params.category,
+        loadCount: params.loadCount,
+        lastFetchedDate: params.lastFetchedDate);
   }
 }
