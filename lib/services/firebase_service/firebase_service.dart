@@ -49,6 +49,11 @@ abstract class FirebaseService {
     required int loadCount,
     required DateTime lastFetchedDate,
   });
+  Future<Either<Failure, void>> deleteImageFromDb({
+    required String path,
+    required String imageName,
+    required String id
+  });
 
   
 }

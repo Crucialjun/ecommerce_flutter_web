@@ -2,6 +2,7 @@ import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/controller/media_controller.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -115,9 +116,11 @@ class ImagePopup extends StatelessWidget {
                   SizedBox(
                     width: 300,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          MediaController.instance.deleteImage(image);
+                        },
                         child: Text(
-                          'Download Image',
+                          'Delete Image',
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.error),
                         )),

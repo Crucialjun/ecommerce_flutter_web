@@ -222,8 +222,6 @@ class IFirebaseService implements FirebaseService {
 
       //convert the file to uint8list
 
-      
-
       await ref.putData(file);
 
       final url = await ref.getDownloadURL();
@@ -304,6 +302,42 @@ class IFirebaseService implements FirebaseService {
       return Right(querySnapshot.docs
           .map((doc) => ImageModel.fromSnapshot(doc))
           .toList());
+    } on FirebaseException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on SocketException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on HttpException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on FormatException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } on PlatformException catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      _logger.e(e.toString());
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteImageFromDb(
+      {required String path,
+      required String imageName,
+      required String id}) async {
+    try {
+      Logger().i("Deleting image from path: $path");
+
+      Logger().i("Deleting image with name: $imageName");
+
+      await storage.ref().child(path).delete();
+
+      await _db.collection("Images").doc(id).delete();
+
+      return Right(null);
     } on FirebaseException catch (e) {
       _logger.e(e.toString());
       return Left(Failure(e.toString()));

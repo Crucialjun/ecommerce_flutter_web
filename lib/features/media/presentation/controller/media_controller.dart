@@ -5,9 +5,11 @@ import 'package:ecommerce_flutter_web/common/dialogs/default_dialog.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/core/locator.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/params/delete_image_params.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_images_params.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_more_images_params.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/params/upload_media_to_cloud_params.dart';
+import 'package:ecommerce_flutter_web/features/media/domain/usecases/delete_image_usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/fetch_images_usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/fetch_more_images_usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/upoad_media_usecase.dart';
@@ -271,6 +273,58 @@ class MediaController extends GetxController {
     }, (r) {
       targetList.addAll(r);
       loading.value = false;
+    });
+  }
+
+  void deleteImageConfirm(ImageModel image) {
+    dialogService.showAppDialog(DefaultDialog(
+      title: "Delete Image",
+      content: "Are you sure you want to delete this image?",
+      onConfirm: () async {
+        await deleteImage(image);
+      },
+    ));
+  }
+
+  Future<void> deleteImage(ImageModel image) async {
+    Get.back();
+    dialogService.showAppDialog(LoadingDialog(
+      message: 'Sit tight your image is being deleted...',
+      animationAsset: AppAssets.decorAnimation,
+    ));
+
+    final res = await DeleteImageUsecase().call(DeleteImageParams(
+        path: image.fullPath ?? "", imageName: image.fileName, id: image.id));
+
+    res.fold((l) {
+      Logger().e('Error deleting image: $l');
+      Get.back();
+    }, (r) {
+      Logger().i('Image deleted: ${image.fileName}');
+      RxList<ImageModel> targetList = <ImageModel>[].obs;
+
+      switch (selectedFolder.value) {
+        case "products":
+          targetList = allProductImages;
+          break;
+        case "banners":
+          targetList = allBannerImages;
+          break;
+        case "brands":
+          targetList = allBrandImages;
+          break;
+        case "categories":
+          targetList = allCategoryImages;
+          break;
+        case "users":
+          targetList = allUserImages;
+          break;
+        default:
+          targetList = allImages;
+      }
+      targetList.remove(image);
+      Get.isDialogOpen ?? Get.back();
+      update();
     });
   }
 }
