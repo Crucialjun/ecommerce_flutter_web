@@ -5,29 +5,31 @@ import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/controller/media_controller.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/image_popup.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_folder_dropdown.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_images_list_item.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_images_list_item_with_checkbox.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 class MediaContent extends StatelessWidget {
-   MediaContent(
+  MediaContent(
       {super.key,
       required this.allowSelection,
       required this.allowMultipleSelection,
-       this.alreadySelectedUrls,
-       
-      required this.onImageSelected});
+      this.alreadySelectedUrls,
+      this.onImageSelected});
 
   final bool allowSelection;
   final bool allowMultipleSelection;
   final List<String>? alreadySelectedUrls;
   final List<ImageModel> selectedImages = [];
-  final Function(List<ImageModel>) onImageSelected;
+  final Function(List<ImageModel>)? onImageSelected;
 
   @override
   Widget build(BuildContext context) {
     final mediaController = MediaController.instance;
+    bool loadPreviousSelection = false;
     return AppRoundedContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,6 +57,8 @@ class MediaContent extends StatelessWidget {
             ],
           ),
 
+          if (allowSelection) buildAddSelectedImagesButton(),
+
           SizedBox(
             height: AppSizes.spaceBtwSections,
           ),
@@ -63,6 +67,28 @@ class MediaContent extends StatelessWidget {
 
           Obx(() {
             List<ImageModel> images = getSelectedFolderImages(mediaController);
+
+            if (!loadPreviousSelection) {
+              if (alreadySelectedUrls != null &&
+                  alreadySelectedUrls!.isNotEmpty) {
+                final selectedUrlsSet = Set<String>.from(alreadySelectedUrls!);
+
+                for (var image in images) {
+                  image.isSelected.value = selectedUrlsSet.contains(image.url);
+                  if (image.isSelected.value) {
+                    selectedImages.add(image);
+                  }
+                }
+                if (onImageSelected != null) {
+                  onImageSelected!(selectedImages);
+                }
+              } else {
+                for (var image in images) {
+                  image.isSelected.value = false;
+                }
+              }
+              loadPreviousSelection = true;
+            }
 
             if (mediaController.loading.value) {
               return Center(
@@ -98,39 +124,15 @@ class MediaContent extends StatelessWidget {
                           height: 180,
                           child: Column(
                             children: [
-                              Container(
-                                padding: EdgeInsets.all(AppSizes.sm),
-                                decoration: BoxDecoration(
-                                    color: AppColors.primaryBackground),
-                                child: ExtendedImage.network(
-                                  e.url,
-                                  width: 140,
-                                  height: 120,
-                                  fit: BoxFit.contain,
-                                  shape: BoxShape.circle,
-                                  loadStateChanged: (state) {
-                                    if (state.extendedImageLoadState ==
-                                        LoadState.loading) {
-                                      return Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    } else if (state.extendedImageLoadState ==
-                                        LoadState.failed) {
-                                      Logger()
-                                          .e('Error loading image: ${e.url}');
-                                      return Center(
-                                        child: Icon(
-                                          Icons.error,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .error,
-                                        ),
-                                      );
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
+                              allowSelection
+                                  ? MediaImagesListItemWithCheckbox(
+                                      image: e,
+                                      selectedImages: selectedImages,
+                                      allowMultipleSelection:
+                                          allowMultipleSelection)
+                                  : MediaImagesListItem(
+                                      image: e,
+                                    ),
                               Expanded(
                                   child: Padding(
                                 padding: EdgeInsets.all(AppSizes.sm),
@@ -189,5 +191,36 @@ class MediaContent extends StatelessWidget {
       default:
         return mediaController.allImages;
     }
+  }
+
+  Widget buildAddSelectedImagesButton() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: 120,
+          child: OutlinedButton.icon(
+            onPressed: () {
+              Get.back();
+            },
+            label: Text("Close"),
+            icon: Icon(Icons.cancel_outlined),
+          ),
+        ),
+        SizedBox(
+          width: AppSizes.spaceBtwItems,
+        ),
+        SizedBox(
+          width: 120,
+          child: ElevatedButton.icon(
+            onPressed: () {
+              Get.back(result: selectedImages);
+            },
+            icon: Icon(Icons.add),
+            label: Text('Add'),
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:ecommerce_flutter_web/common/data/models/image_model.dart';
@@ -13,6 +14,7 @@ import 'package:ecommerce_flutter_web/features/media/domain/usecases/delete_imag
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/fetch_images_usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/fetch_more_images_usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/usecases/upoad_media_usecase.dart';
+import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_content.dart';
 import 'package:ecommerce_flutter_web/services/dialog_and_sheet_service/dialog_and_sheet_service.dart';
 import 'package:ecommerce_flutter_web/utils/dialogs/loading_dialog.dart';
 import 'package:flutter/material.dart';
@@ -326,5 +328,34 @@ class MediaController extends GetxController {
       Get.isDialogOpen ?? Get.back();
       update();
     });
+  }
+
+  Future<List<ImageModel>> selectImagesFromMedia({
+    List<String>? selectedUrls,
+    bool allowSelection = true,
+    bool multipleSelection = false,
+  }) async {
+    showImageUploaderSection.value = true;
+
+    List<ImageModel>? selectedImages = await Get.bottomSheet<List<ImageModel>>(
+      isScrollControlled: true,
+      backgroundColor: AppColors.primaryBackground,
+      FractionallySizedBox(
+        heightFactor: 1,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              MediaContent(
+                allowSelection: allowSelection,
+                allowMultipleSelection: multipleSelection,
+                alreadySelectedUrls: selectedUrls ?? [],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    return selectedImages ?? [];
   }
 }
