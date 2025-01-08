@@ -39,6 +39,8 @@ class SidebarController extends GetxController {
   final List<String> menuItems = [
     "/",
     "/media",
+    "/categories",
+    "/products",
   ];
 
  

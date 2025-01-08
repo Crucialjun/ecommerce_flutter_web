@@ -4,7 +4,6 @@ import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
-
 class AppSidebar extends StatelessWidget {
   const AppSidebar({super.key});
 
@@ -49,6 +48,16 @@ class AppSidebar extends StatelessWidget {
                       route: "/media",
                       icon: Icons.camera,
                       title: "Media",
+                    ),
+                    const SidebarMenuItem(
+                      route: "/categories",
+                      icon: Icons.category,
+                      title: "Categories",
+                    ),
+                    const SidebarMenuItem(
+                      route: "/products",
+                      icon: Icons.shopping_bag,
+                      title: "Products",
                     ),
                   ],
                 ),
