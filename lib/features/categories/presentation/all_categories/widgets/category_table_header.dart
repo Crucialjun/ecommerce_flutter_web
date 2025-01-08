@@ -1,14 +1,12 @@
-
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
-
 
 class CategoryTableHeader extends StatelessWidget {
   const CategoryTableHeader(
       {super.key,
       this.onPressed,
       required this.buttonText,
-       this.searchController,
+      this.searchController,
       this.onSearchTextChanged});
 
   final Function()? onPressed;
@@ -27,8 +25,7 @@ class CategoryTableHeader extends StatelessWidget {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                    onPressed: onPressed,
-                    child: Text(buttonText)),
+                    onPressed: onPressed, child: Text(buttonText)),
               ),
             ],
           ),
