@@ -41,6 +41,7 @@ class SidebarController extends GetxController {
     "/media",
     "/categories",
     "/products",
+    "/brands",
   ];
 
  

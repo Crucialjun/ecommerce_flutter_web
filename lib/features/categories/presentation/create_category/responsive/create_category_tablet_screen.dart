@@ -3,12 +3,12 @@ import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/create_category/widgets/create_category_form.dart';
 import 'package:flutter/material.dart';
 
-class CreateCategoryDesktopScreen extends StatelessWidget {
-  const CreateCategoryDesktopScreen({super.key});
+class CreateCategoryTabletScreen extends StatelessWidget {
+  const CreateCategoryTabletScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
         body: SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(AppSizes.defaultSpace),

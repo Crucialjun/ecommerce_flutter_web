@@ -59,6 +59,11 @@ class AppSidebar extends StatelessWidget {
                       icon: Icons.shopping_bag,
                       title: "Products",
                     ),
+                    const SidebarMenuItem(
+                      route: "/brands",
+                      icon: Icons.shopping_cart,
+                      title: "Brands",
+                    ),
                   ],
                 ),
               )

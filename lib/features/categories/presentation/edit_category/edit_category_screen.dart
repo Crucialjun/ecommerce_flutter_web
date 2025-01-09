@@ -1,4 +1,8 @@
+import 'package:ecommerce_flutter_web/features/categories/presentation/data/models/category_model.dart';
+import 'package:ecommerce_flutter_web/features/categories/presentation/edit_category/responsive/edit_category_desktop_screen.dart';
+import 'package:ecommerce_flutter_web/utils/site_template.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EditCategoryScreen extends StatelessWidget {
   static const route = "/edit-category";
@@ -6,6 +10,11 @@ class EditCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final category = CategoryModel();
+    return SiteTemplate(
+      desktop: EditCategoryDesktopScreen(
+        category: category,
+      ),
+    );
   }
 }
