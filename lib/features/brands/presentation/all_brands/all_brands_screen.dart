@@ -1,3 +1,5 @@
+import 'package:ecommerce_flutter_web/features/brands/presentation/all_brands/responsive/all_brands_desktop_screen.dart';
+import 'package:ecommerce_flutter_web/utils/site_template.dart';
 import 'package:flutter/material.dart';
 
 class AllBrandsScreen extends StatelessWidget {
@@ -6,6 +8,8 @@ class AllBrandsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SiteTemplate(
+      desktop: AllBrandsDesktopScreen(),
+    );
   }
 }
