@@ -31,9 +31,16 @@ class AppPaginatedDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppSizes.borderRadiusMd),
+        ),
+      ),
       height: tableHeight,
       child: PaginatedDataTable2(
+        
         columnSpacing: 12,
         dividerThickness: 0,
         horizontalMargin: 12,
