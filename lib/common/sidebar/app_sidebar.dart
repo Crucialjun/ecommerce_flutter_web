@@ -1,6 +1,7 @@
 import 'package:ecommerce_flutter_web/common/sidebar/sidebar_menu_item.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
+import 'package:ecommerce_flutter_web/features/banners/presentation/all_banners/all_banners_screen.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
@@ -63,6 +64,11 @@ class AppSidebar extends StatelessWidget {
                       route: "/brands",
                       icon: Icons.shopping_cart,
                       title: "Brands",
+                    ),
+                    const SidebarMenuItem(
+                      route: AllBannersScreen.route,
+                      icon: Icons.filter_frames,
+                      title: "Banners",
                     ),
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
+import 'package:ecommerce_flutter_web/features/brands/presentation/edit_brand/edit_brand_screen.dart';
 import 'package:ecommerce_flutter_web/utils/device/device_utility.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ class BrandRows extends DataTableSource {
             IconButton(
               icon: Icon(Icons.edit),
               onPressed: () {
-                // Get.toNamed(EditCategoryScreen.route);
+                Get.toNamed(EditBrandScreen.route);
               },
             ),
             IconButton(

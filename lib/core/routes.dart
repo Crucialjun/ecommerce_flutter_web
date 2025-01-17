@@ -2,8 +2,10 @@ import 'package:ecommerce_flutter_web/core/route_middlewares.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/forget_passoword/forget_password_screen.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/login/login_screen.dart';
 import 'package:ecommerce_flutter_web/features/auth/presentation/reset_password/reset_password_screen.dart';
+import 'package:ecommerce_flutter_web/features/banners/presentation/all_banners/all_banners_screen.dart';
 import 'package:ecommerce_flutter_web/features/brands/presentation/all_brands/all_brands_screen.dart';
 import 'package:ecommerce_flutter_web/features/brands/presentation/create_brand/create_brand_screen.dart';
+import 'package:ecommerce_flutter_web/features/brands/presentation/edit_brand/edit_brand_screen.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/all_categories/categories_screen.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/create_category/create_category_screen.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/edit_category/edit_category_screen.dart';
@@ -49,5 +51,13 @@ class Routes {
         name: CreateBrandScreen.route,
         page: () => const CreateBrandScreen(),
         middlewares: [RouteMiddlewares()]),
+    GetPage(
+        name: EditBrandScreen.route,
+        page: () => const EditBrandScreen(),
+        middlewares: [RouteMiddlewares()]),
+         GetPage(
+        name: AllBannersScreen.route,
+        page: () => const EditBrandScreen(),
+        middlewares: [RouteMiddlewares()])
   ];
 }

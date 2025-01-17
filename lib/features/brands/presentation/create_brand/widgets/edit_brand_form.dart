@@ -5,8 +5,8 @@ import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
-class CreateBrandForm extends StatelessWidget {
-  const CreateBrandForm({super.key});
+class EditBrandForm extends StatelessWidget {
+  const EditBrandForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CreateBrandForm extends StatelessWidget {
         children: [
           SizedBox(height: AppSizes.sm),
           Text(
-            "Create New Brand",
+            "Edit  Brand",
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(height: AppSizes.spaceBtwSections),
@@ -55,8 +55,6 @@ class CreateBrandForm extends StatelessWidget {
                     label: Text("Track Suits"),
                     padding: EdgeInsets.all(AppSizes.xs),
                   )),
-
-
             ],
           ),
           SizedBox(height: AppSizes.spaceBtwInputFields * 2),
@@ -84,14 +82,13 @@ class CreateBrandForm extends StatelessWidget {
               ),
             ],
           ),
-
           CheckboxMenuButton(
               value: true, onChanged: (value) {}, child: Text("Featured")),
-              SizedBox(height: AppSizes.spaceBtwInputFields  * 2),
-              SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: Text("Create Brand"))),
-              SizedBox(height: AppSizes.spaceBtwInputFields  * 2),
-
-          
+          SizedBox(height: AppSizes.spaceBtwInputFields * 2),
+          SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(onPressed: () {}, child: Text("Update"))),
+          SizedBox(height: AppSizes.spaceBtwInputFields * 2),
         ],
       )),
     );
