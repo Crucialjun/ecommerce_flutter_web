@@ -1,6 +1,7 @@
 import 'package:ecommerce_flutter_web/common/widgets/breadcrumbs_with_heading.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
+import 'package:ecommerce_flutter_web/features/banners/presentation/all_banners/widgets/banners_table.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/all_categories/widgets/category_table_header.dart';
 import 'package:flutter/material.dart';
 
@@ -26,10 +27,8 @@ class AllBannersDesktopScreen extends StatelessWidget {
                   children: [
                     CategoryTableHeader(
                         buttonText: "Create New Banner", onPressed: () {}),
-
                     SizedBox(height: AppSizes.spaceBtwItems),
-
-                    // BannersTable(),
+                    BannersTable(),
                   ],
                 ),
               )

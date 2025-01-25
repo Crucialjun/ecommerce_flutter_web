@@ -55,9 +55,9 @@ class Routes {
         name: EditBrandScreen.route,
         page: () => const EditBrandScreen(),
         middlewares: [RouteMiddlewares()]),
-         GetPage(
+    GetPage(
         name: AllBannersScreen.route,
-        page: () => const EditBrandScreen(),
+        page: () => const AllBannersScreen(),
         middlewares: [RouteMiddlewares()])
   ];
 }
