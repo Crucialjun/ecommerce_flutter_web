@@ -2,8 +2,10 @@ import 'package:ecommerce_flutter_web/common/widgets/breadcrumbs_with_heading.da
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/banners/presentation/all_banners/widgets/banners_table.dart';
+import 'package:ecommerce_flutter_web/features/banners/presentation/create_banner/create_banner_screen.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/all_categories/widgets/category_table_header.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllBannersDesktopScreen extends StatelessWidget {
   const AllBannersDesktopScreen({super.key});
@@ -26,7 +28,10 @@ class AllBannersDesktopScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CategoryTableHeader(
-                        buttonText: "Create New Banner", onPressed: () {}),
+                        buttonText: "Create New Banner",
+                        onPressed: () {
+                          Get.toNamed(CreateBannerScreen.routeName);
+                        }),
                     SizedBox(height: AppSizes.spaceBtwItems),
                     BannersTable(),
                   ],
