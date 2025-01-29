@@ -2,6 +2,7 @@ import 'package:ecommerce_flutter_web/common/sidebar/sidebar_menu_item.dart';
 import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/features/banners/presentation/all_banners/all_banners_screen.dart';
+import 'package:ecommerce_flutter_web/features/products/presentation/all_products/products_screen.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +57,7 @@ class AppSidebar extends StatelessWidget {
                       title: "Categories",
                     ),
                     const SidebarMenuItem(
-                      route: "/products",
+                      route: ProductsScreen.routeName,
                       icon: Icons.shopping_bag,
                       title: "Products",
                     ),
