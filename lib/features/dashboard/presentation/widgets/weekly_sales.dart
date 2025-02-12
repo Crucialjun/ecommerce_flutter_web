@@ -95,7 +95,8 @@ class WeeklySales extends StatelessWidget {
             final day = days[index];
 
             return SideTitleWidget(
-              axisSide: AxisSide.bottom,
+              meta: meta,
+             
               space: 0,
               child: Text(day),
             );
