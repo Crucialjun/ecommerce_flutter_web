@@ -13,6 +13,7 @@ import 'package:ecommerce_flutter_web/features/categories/presentation/create_ca
 import 'package:ecommerce_flutter_web/features/categories/presentation/edit_category/edit_category_screen.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/media_screen.dart';
+import 'package:ecommerce_flutter_web/features/products/presentation/add_product/add_product_screen.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/all_products/products_screen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -73,6 +74,10 @@ class Routes {
     GetPage(
         name: ProductsScreen.routeName,
         page: () => const ProductsScreen(),
+        middlewares: [RouteMiddlewares()]),
+    GetPage(
+        name: AddProductScreen.routeName,
+        page: () => const AddProductScreen(),
         middlewares: [RouteMiddlewares()])
   ];
 }

@@ -13,7 +13,7 @@ class ProductRows extends DataTableSource {
         DataCell(Row(
           children: [
             ExtendedImage.network(
-              "https://via.placeholder.com/150",
+              "https://picsum.photos/200",
               width: 50,
               height: 50,
               shape: BoxShape.circle,
@@ -31,7 +31,7 @@ class ProductRows extends DataTableSource {
         DataCell(Row(
           children: [
             ExtendedImage.network(
-              "https://via.placeholder.com/150",
+              "https://picsum.photos/150",
               width: 50,
               height: 50,
               shape: BoxShape.circle,
@@ -46,21 +46,12 @@ class ProductRows extends DataTableSource {
           ],
         )),
         DataCell(Text("\$199.99")),
+        DataCell(Text(DateTime.now().toString())),
         DataCell(Row(
           children: [
-            ExtendedImage.network(
-              "https://via.placeholder.com/150",
-              width: 50,
-              height: 50,
-              shape: BoxShape.circle,
-            ),
+            Icon(Icons.edit),
             const SizedBox(width: AppSizes.spaceBtwItems),
-            Flexible(
-                child: Text("Product Title",
-                    style: Theme.of(Get.context!)
-                        .textTheme
-                        .bodyLarge!
-                        .apply(color: AppColors.primary))),
+            Icon(Icons.delete),
           ],
         ))
       ],

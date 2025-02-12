@@ -21,6 +21,9 @@ class ProductsTable extends StatelessWidget {
             label: Text('Stock'),
           ),
           DataColumn2(
+            label: Text('Brand'),
+          ),
+          DataColumn2(
             label: Text('Price'),
           ),
           DataColumn2(

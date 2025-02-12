@@ -2,8 +2,10 @@ import 'package:ecommerce_flutter_web/common/widgets/breadcrumbs_with_heading.da
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/all_categories/widgets/category_table_header.dart';
+import 'package:ecommerce_flutter_web/features/products/presentation/add_product/add_product_screen.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/all_products/widgets/products_table.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllProductsDesktopScreen extends StatelessWidget {
   const AllProductsDesktopScreen({super.key});
@@ -25,6 +27,9 @@ class AllProductsDesktopScreen extends StatelessWidget {
               SizedBox(height: AppSizes.spaceBtwSections),
               AppRoundedContainer(
                 child: CategoryTableHeader(
+                  onPressed: () {
+                    Get.toNamed(AddProductScreen.routeName);
+                  },
                   buttonText: "Add Product",
                 ),
               ),
