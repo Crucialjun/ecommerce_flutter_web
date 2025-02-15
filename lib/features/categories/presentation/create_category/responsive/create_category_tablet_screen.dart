@@ -8,7 +8,7 @@ class CreateCategoryTabletScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(AppSizes.defaultSpace),

@@ -9,56 +9,54 @@ import 'package:get/get.dart';
 class CategoryRows extends DataTableSource {
   @override
   DataRow? getRow(int index) {
-    return DataRow2(
-      
-        cells: [
-          DataCell(Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(color: AppColors.primaryBackground),
-                width: 50,
-                height: 50,
-                padding: EdgeInsets.all(AppSizes.sm),
-                child: ExtendedImage.network(
-                  "https://via.placeholder.com/150",
-                  shape: BoxShape.circle,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(width: AppSizes.spaceBtwItems),
-              Expanded(
-                child: Text("Name",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: Theme.of(Get.context!).textTheme.bodyLarge),
-              ),
-            ],
-          )),
-          DataCell(
-            Text(
-              "Parent",
+    return DataRow2(cells: [
+      DataCell(Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(color: AppColors.primaryBackground),
+            width: 50,
+            height: 50,
+            padding: EdgeInsets.all(AppSizes.sm),
+            child: ExtendedImage.network(
+              "https://via.placeholder.com/150",
+              shape: BoxShape.circle,
+              fit: BoxFit.cover,
             ),
           ),
-          DataCell(Icon(
-            Icons.favorite,
-            color: AppColors.primary,
-          )),
-          DataCell(Text(DateTime.now().toString())),
-          DataCell(Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () {
-                  Get.toNamed(EditCategoryScreen.route);
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {},
-              ),
-            ],
-          )),
-        ]);
+          SizedBox(width: AppSizes.spaceBtwItems),
+          Expanded(
+            child: Text("Name",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: Theme.of(Get.context!).textTheme.bodyLarge),
+          ),
+        ],
+      )),
+      DataCell(
+        Text(
+          "Parent",
+        ),
+      ),
+      DataCell(Icon(
+        Icons.favorite,
+        color: AppColors.primary,
+      )),
+      DataCell(Text(DateTime.now().toString())),
+      DataCell(Row(
+        children: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              Get.toNamed(EditCategoryScreen.route);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {},
+          ),
+        ],
+      )),
+    ]);
   }
 
   @override

@@ -55,8 +55,6 @@ class CreateBrandForm extends StatelessWidget {
                     label: Text("Track Suits"),
                     padding: EdgeInsets.all(AppSizes.xs),
                   )),
-
-
             ],
           ),
           SizedBox(height: AppSizes.spaceBtwInputFields * 2),
@@ -84,14 +82,14 @@ class CreateBrandForm extends StatelessWidget {
               ),
             ],
           ),
-
           CheckboxMenuButton(
               value: true, onChanged: (value) {}, child: Text("Featured")),
-              SizedBox(height: AppSizes.spaceBtwInputFields  * 2),
-              SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: Text("Create Brand"))),
-              SizedBox(height: AppSizes.spaceBtwInputFields  * 2),
-
-          
+          SizedBox(height: AppSizes.spaceBtwInputFields * 2),
+          SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                  onPressed: () {}, child: Text("Create Brand"))),
+          SizedBox(height: AppSizes.spaceBtwInputFields * 2),
         ],
       )),
     );

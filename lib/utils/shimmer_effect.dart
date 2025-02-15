@@ -7,7 +7,7 @@ class AppShimmerEffect extends StatelessWidget {
       {super.key,
       required this.height,
       required this.width,
-       this.radius = 15,
+      this.radius = 15,
       this.color});
 
   final double height, width, radius;

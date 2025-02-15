@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class GeneralBindings extends Bindings {
   @override
   void dependencies() {
-   Get.lazyPut(() => UserController(),fenix: true);
+    Get.lazyPut(() => UserController(), fenix: true);
   }
 }

@@ -15,8 +15,7 @@ class ForgotPasswordForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         IconButton(
-            onPressed: () => Get.back(),
-            icon: const Icon(Icons.arrow_back)),
+            onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back)),
         const SizedBox(
           height: AppSizes.spaceBtwItems,
         ),

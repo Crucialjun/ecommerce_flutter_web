@@ -112,7 +112,5 @@ class DashboardController extends GetxController {
       totalAmounts[order.status] =
           (totalAmounts[order.status] ?? 0) + order.totalAmount;
     }
-
-    
   }
 }

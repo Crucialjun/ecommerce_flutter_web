@@ -2,12 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:equatable/equatable.dart';
 
-
-
-
 ///[Future].
 mixin UseCases<T, Params> {
-  Future<Either<Failure, T >> call(Params params);
+  Future<Either<Failure, T>> call(Params params);
 }
 
 ///[Stream].

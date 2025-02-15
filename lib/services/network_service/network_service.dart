@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:ecommerce_flutter_web/core/api_response.dart';
 import 'package:get/get.dart';
 
-
 abstract class NetworkService extends GetxController {
   Future<ApiResponse<Map<String, dynamic>>> get(
     String url, {

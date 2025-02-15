@@ -11,20 +11,27 @@ class BrandTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPaginatedDataTable(
-
       minWidth: 700,
       tableHeight: 760,
       dataRowHeight: 64,
-     
-      columns:  [
-        DataColumn2(label: Text("Brand"),fixedWidth: AppDeviceUtils.isMobileScreen(Get.context!) ? null : 200),
+      columns: [
+        DataColumn2(
+            label: Text("Brand"),
+            fixedWidth:
+                AppDeviceUtils.isMobileScreen(Get.context!) ? null : 200),
         DataColumn2(label: Text("Categories")),
-        DataColumn2(label: Text("Featured"),fixedWidth: AppDeviceUtils.isMobileScreen(Get.context!) ? null : 100),
-        DataColumn2(label: Text("Date"),fixedWidth: AppDeviceUtils.isMobileScreen(Get.context!) ? null : 200),
-        DataColumn2(label: Text("Action"),fixedWidth: AppDeviceUtils.isMobileScreen(Get.context!) ? null : 100),
-
-
-      
+        DataColumn2(
+            label: Text("Featured"),
+            fixedWidth:
+                AppDeviceUtils.isMobileScreen(Get.context!) ? null : 100),
+        DataColumn2(
+            label: Text("Date"),
+            fixedWidth:
+                AppDeviceUtils.isMobileScreen(Get.context!) ? null : 200),
+        DataColumn2(
+            label: Text("Action"),
+            fixedWidth:
+                AppDeviceUtils.isMobileScreen(Get.context!) ? null : 100),
       ],
       source: BrandRows(),
     );

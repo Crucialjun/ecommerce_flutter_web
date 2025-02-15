@@ -72,5 +72,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'ecommerce-flutter-web.firebasestorage.app',
     iosBundleId: 'com.example.ecommerceFlutterWeb',
   );
-
 }

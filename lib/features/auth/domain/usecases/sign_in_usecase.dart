@@ -8,15 +8,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInUsecase with UseCases<User?, LoginParams> {
   final _repository = locator<AuthRepository>();
-  
+
   @override
   Future<Either<Failure, User?>> call(LoginParams params) {
     return _repository.signInWithEmailAndPassword(loginParams: params);
   }
-
- 
-
-  
-
-  
 }

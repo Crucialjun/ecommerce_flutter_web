@@ -88,7 +88,6 @@ Column buildEmptyAttributes() {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           TextButton(
             onPressed: () {},
             child: Text("There are no Attributes added yet"),

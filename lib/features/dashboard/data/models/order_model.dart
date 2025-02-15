@@ -32,10 +32,10 @@ class OrderModel extends Equatable {
 
 enum OrderStatusEnum {
   pending("Pending"),
-  processing ("Processing"),
-  shipped ("Shipped"),
-  delivered ("Delivered"),
-  cancelled ("Cancelled");
+  processing("Processing"),
+  shipped("Shipped"),
+  delivered("Delivered"),
+  cancelled("Cancelled");
 
   const OrderStatusEnum(this.value);
   final String value;

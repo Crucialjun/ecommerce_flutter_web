@@ -2,7 +2,6 @@ enum AppRoleEnum {
   admin("admin"),
   user("user");
 
-
   const AppRoleEnum(this.value);
   final String value;
 
@@ -16,5 +15,4 @@ enum AppRoleEnum {
         return AppRoleEnum.user;
     }
   }
-
 }

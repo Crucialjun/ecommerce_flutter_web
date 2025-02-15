@@ -3,5 +3,6 @@ class DeleteImageParams {
   final String imageName;
   final String id;
 
-  DeleteImageParams({required this.path, required this.imageName, required this.id});
+  DeleteImageParams(
+      {required this.path, required this.imageName, required this.id});
 }

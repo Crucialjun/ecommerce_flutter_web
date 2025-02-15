@@ -38,7 +38,7 @@ class AuthRepositoryImpl implements AuthRepository {
     return _remoteDataSource.signUpWithEmailAndPassword(
         loginParams: loginParams);
   }
-  
+
   @override
   Future<Either<Failure, UserModel>> getUserFromDb({required String uid}) {
     return _remoteDataSource.getUserFromDb(uid: uid);

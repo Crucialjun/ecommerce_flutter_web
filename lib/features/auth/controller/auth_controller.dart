@@ -16,7 +16,6 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
- 
     userSubscription = FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         _isUserLoggedIn = true;

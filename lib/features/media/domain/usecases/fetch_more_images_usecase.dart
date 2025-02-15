@@ -6,7 +6,8 @@ import 'package:ecommerce_flutter_web/core/usecase.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/params/fetch_more_images_params.dart';
 import 'package:ecommerce_flutter_web/features/media/domain/repository/media_repository.dart';
 
-class FetchMoreImagesUsecase with UseCases<List<ImageModel>,FetchMoreImagesParams> {
+class FetchMoreImagesUsecase
+    with UseCases<List<ImageModel>, FetchMoreImagesParams> {
   final _repository = locator<MediaRepository>();
   @override
   Future<Either<Failure, List<ImageModel>>> call(FetchMoreImagesParams params) {

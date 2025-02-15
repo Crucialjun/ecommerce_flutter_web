@@ -3,5 +3,8 @@ class FetchMoreImagesParams {
   final int loadCount;
   final DateTime lastFetchedDate;
 
-  FetchMoreImagesParams({required this.category, required this.loadCount, required this.lastFetchedDate});
+  FetchMoreImagesParams(
+      {required this.category,
+      required this.loadCount,
+      required this.lastFetchedDate});
 }

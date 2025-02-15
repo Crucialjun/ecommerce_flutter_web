@@ -7,7 +7,8 @@ class AppCheckBoxTheme {
 
   /// Customizable Light Text Theme
   static CheckboxThemeData lightCheckboxTheme = CheckboxThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.xs)),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSizes.xs)),
     checkColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
         return AppColors.white;
@@ -26,7 +27,8 @@ class AppCheckBoxTheme {
 
   /// Customizable Dark Text Theme
   static CheckboxThemeData darkCheckboxTheme = CheckboxThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.xs)),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSizes.xs)),
     checkColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
         return AppColors.white;
@@ -42,7 +44,4 @@ class AppCheckBoxTheme {
       }
     }),
   );
-
-
-  
 }

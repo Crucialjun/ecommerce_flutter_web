@@ -3,7 +3,6 @@ import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class AppInputDecorationTheme {
-
   AppInputDecorationTheme._();
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
@@ -11,10 +10,18 @@ class AppInputDecorationTheme {
     prefixIconColor: AppColors.darkGrey,
     suffixIconColor: AppColors.darkGrey,
     // constraints: const BoxConstraints.expand(height: TSizes.inputFieldHeight),
-    labelStyle: const TextStyle().copyWith(fontSize: AppSizes.fontSizeMd, color: AppColors.textPrimary, fontFamily: 'Urbanist'),
-    hintStyle: const TextStyle().copyWith(fontSize: AppSizes.fontSizeSm, color: AppColors.textSecondary, fontFamily: 'Urbanist'),
-    errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal, fontFamily: 'Urbanist'),
-    floatingLabelStyle: const TextStyle().copyWith(color: AppColors.textSecondary, fontFamily: 'Urbanist'),
+    labelStyle: const TextStyle().copyWith(
+        fontSize: AppSizes.fontSizeMd,
+        color: AppColors.textPrimary,
+        fontFamily: 'Urbanist'),
+    hintStyle: const TextStyle().copyWith(
+        fontSize: AppSizes.fontSizeSm,
+        color: AppColors.textSecondary,
+        fontFamily: 'Urbanist'),
+    errorStyle: const TextStyle()
+        .copyWith(fontStyle: FontStyle.normal, fontFamily: 'Urbanist'),
+    floatingLabelStyle: const TextStyle()
+        .copyWith(color: AppColors.textSecondary, fontFamily: 'Urbanist'),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
       borderSide: const BorderSide(width: 1, color: AppColors.borderPrimary),
@@ -23,7 +30,7 @@ class AppInputDecorationTheme {
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
       borderSide: const BorderSide(width: 1, color: AppColors.borderPrimary),
     ),
-    focusedBorder:const OutlineInputBorder().copyWith(
+    focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
       borderSide: const BorderSide(width: 1, color: AppColors.borderSecondary),
     ),
@@ -42,9 +49,16 @@ class AppInputDecorationTheme {
     prefixIconColor: AppColors.darkGrey,
     suffixIconColor: AppColors.darkGrey,
     // constraints: const BoxConstraints.expand(height: TSizes.inputFieldHeight),
-    labelStyle: const TextStyle().copyWith(fontSize: AppSizes.fontSizeMd, color: AppColors.white, fontFamily: 'Urbanist'),
-    hintStyle: const TextStyle().copyWith(fontSize: AppSizes.fontSizeSm, color: AppColors.white, fontFamily: 'Urbanist'),
-    floatingLabelStyle: const TextStyle().copyWith(color: AppColors.white.withValues(alpha : 0.8), fontFamily: 'Urbanist'),
+    labelStyle: const TextStyle().copyWith(
+        fontSize: AppSizes.fontSizeMd,
+        color: AppColors.white,
+        fontFamily: 'Urbanist'),
+    hintStyle: const TextStyle().copyWith(
+        fontSize: AppSizes.fontSizeSm,
+        color: AppColors.white,
+        fontFamily: 'Urbanist'),
+    floatingLabelStyle: const TextStyle().copyWith(
+        color: AppColors.white.withValues(alpha: 0.8), fontFamily: 'Urbanist'),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
       borderSide: const BorderSide(width: 1, color: AppColors.darkGrey),

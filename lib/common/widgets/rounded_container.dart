@@ -2,7 +2,6 @@ import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
 import 'package:flutter/material.dart';
 
-
 /// A container widget with rounded corners and customizable properties.
 class AppRoundedContainer extends StatelessWidget {
   /// Create a rounded container with customizable properties.
@@ -60,7 +59,7 @@ class AppRoundedContainer extends StatelessWidget {
           boxShadow: [
             if (showShadow)
               BoxShadow(
-                color: AppColors.grey.withValues(alpha : 0.1),
+                color: AppColors.grey.withValues(alpha: 0.1),
                 spreadRadius: 5,
                 blurRadius: 8,
                 offset: const Offset(0, 3),

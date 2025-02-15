@@ -6,12 +6,8 @@ import 'package:ecommerce_flutter_web/core/locator.dart';
 import 'package:ecommerce_flutter_web/services/dialog_and_sheet_service/dialog_and_sheet_service.dart';
 import 'package:logger/logger.dart';
 
-
-
 class AuthInterceptor extends Interceptor {
- 
   final dialogAndSheetService = locator<DialogAndSheetService>();
-
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
@@ -20,9 +16,7 @@ class AuthInterceptor extends Interceptor {
       '---STATUSCODE: ${err.error}\n'
       '---MESSAGE: ${err.response?.data ?? err.message}',
     );
-    if (err.response?.data['message'] == 'SESSION_OUT') {
-     
-    }
+    if (err.response?.data['message'] == 'SESSION_OUT') {}
 
     handler.reject(err);
   }
@@ -37,16 +31,11 @@ class AuthInterceptor extends Interceptor {
 
     try {
       var responseData = json.decode(json.encode(response.data));
-      if (responseData["message"] == "Token Has Expired or Invalid") {
-     
-     
-      }
+      if (responseData["message"] == "Token Has Expired or Invalid") {}
     } catch (e) {
       Logger().e("Error in AuthInterceptor: $e");
     }
 
     return super.onResponse(response, handler);
   }
-
- 
 }

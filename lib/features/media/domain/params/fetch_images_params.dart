@@ -3,6 +3,4 @@ class FetchImagesParams {
   final int loadCount;
 
   FetchImagesParams({required this.category, required this.loadCount});
-
- 
 }

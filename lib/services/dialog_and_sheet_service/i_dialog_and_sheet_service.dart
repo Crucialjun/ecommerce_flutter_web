@@ -2,9 +2,7 @@ import 'package:ecommerce_flutter_web/services/dialog_and_sheet_service/dialog_a
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class IDialogAndSheetService extends DialogAndSheetService {
-  
   @override
   Future<T?> showAppBottomSheet<T>(Widget child) async {
     return showModalBottomSheet(
@@ -31,9 +29,7 @@ class IDialogAndSheetService extends DialogAndSheetService {
       //useRootNavigator: true,
 
       useSafeArea: true,
-      builder: (context) => PopScope(
-        canPop: false,
-        child: child),
+      builder: (context) => PopScope(canPop: false, child: child),
     );
   }
 }

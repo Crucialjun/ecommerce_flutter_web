@@ -80,8 +80,8 @@ class WeeklySales extends StatelessWidget {
       ),
     );
   }
-  
-   FlTitlesData buildTitlesData() {
+
+  FlTitlesData buildTitlesData() {
     return FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
@@ -96,7 +96,6 @@ class WeeklySales extends StatelessWidget {
 
             return SideTitleWidget(
               meta: meta,
-             
               space: 0,
               child: Text(day),
             );

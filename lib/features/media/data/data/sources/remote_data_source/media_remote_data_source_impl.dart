@@ -36,13 +36,15 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, List<ImageModel>>> fetchImages({required FetchImagesParams params}) {
+  Future<Either<Failure, List<ImageModel>>> fetchImages(
+      {required FetchImagesParams params}) {
     return _firebaseService.fetchImagesFromDb(
         category: params.category, loadCount: params.loadCount);
   }
 
   @override
-  Future<Either<Failure, List<ImageModel>>> loadMoreImages({required FetchMoreImagesParams params}) {
+  Future<Either<Failure, List<ImageModel>>> loadMoreImages(
+      {required FetchMoreImagesParams params}) {
     return _firebaseService.loadMoreImagesFromDatabase(
         category: params.category,
         loadCount: params.loadCount,
@@ -50,11 +52,12 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, void>> deleteImage({required DeleteImageParams params}) {
+  Future<Either<Failure, void>> deleteImage(
+      {required DeleteImageParams params}) {
     return _firebaseService.deleteImageFromDb(
       path: params.path,
       imageName: params.imageName,
       id: params.id,
-        );
+    );
   }
 }

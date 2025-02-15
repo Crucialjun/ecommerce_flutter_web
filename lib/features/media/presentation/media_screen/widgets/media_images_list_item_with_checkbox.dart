@@ -7,7 +7,11 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 class MediaImagesListItemWithCheckbox extends StatelessWidget {
-  const MediaImagesListItemWithCheckbox({super.key, required this.image,required this.selectedImages,required this.allowMultipleSelection});
+  const MediaImagesListItemWithCheckbox(
+      {super.key,
+      required this.image,
+      required this.selectedImages,
+      required this.allowMultipleSelection});
 
   final ImageModel image;
   final List<ImageModel> selectedImages;
@@ -63,7 +67,6 @@ class MediaImagesListItemWithCheckbox extends StatelessWidget {
                           }
                         }
                       }
-
                     } else {
                       selectedImages.remove(image);
                     }

@@ -40,7 +40,6 @@ class AppPaginatedDataTable extends StatelessWidget {
       ),
       height: tableHeight,
       child: PaginatedDataTable2(
-        
         columnSpacing: 12,
         dividerThickness: 0,
         horizontalMargin: 12,

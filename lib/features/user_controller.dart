@@ -25,8 +25,6 @@ class UserController extends GetxController {
     Logger().i("User Controller Init Done");
   }
 
-
-
   Future getUser() async {
     Logger().i("Getting user");
     isLoading.value = true;

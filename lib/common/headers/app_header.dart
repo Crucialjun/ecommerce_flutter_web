@@ -26,7 +26,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: AppColors.grey.withValues(alpha :0.5),
+            color: AppColors.grey.withValues(alpha: 0.5),
             width: 1,
           ),
         ),

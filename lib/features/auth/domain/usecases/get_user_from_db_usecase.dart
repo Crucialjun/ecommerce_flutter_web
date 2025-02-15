@@ -5,10 +5,10 @@ import 'package:ecommerce_flutter_web/core/locator.dart';
 import 'package:ecommerce_flutter_web/core/usecase.dart';
 import 'package:ecommerce_flutter_web/features/auth/domain/repository/auth_repository.dart';
 
-class GetUserFromDbUsecase with UseCases<UserModel,String> {
+class GetUserFromDbUsecase with UseCases<UserModel, String> {
   final _repository = locator<AuthRepository>();
   @override
   Future<Either<Failure, UserModel>> call(String params) {
-   return _repository.getUserFromDb(uid: params);
+    return _repository.getUserFromDb(uid: params);
   }
 }

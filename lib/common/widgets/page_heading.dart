@@ -9,11 +9,10 @@ class PageHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-   
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         //breadcrumbs
-       Text(heading, style: Theme.of(context).textTheme.headlineLarge),
+        Text(heading, style: Theme.of(context).textTheme.headlineLarge),
         if (rightSideWidget != null) rightSideWidget!,
       ],
     );

@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
@@ -12,7 +7,6 @@ import 'package:ecommerce_flutter_web/core/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:universal_html/html.dart';
-
 
 abstract class FirebaseService {
   Future<Either<Failure, User>> userAuthStatus();
@@ -24,11 +18,13 @@ abstract class FirebaseService {
     required Map<String, dynamic> user,
     required String dbName,
   });
-  Future<Either<Failure, DocumentSnapshot<Map<String,dynamic>>>> getUserFromDb(
+  Future<Either<Failure, DocumentSnapshot<Map<String, dynamic>>>> getUserFromDb(
       {required String collectionName, required String uid});
   Future<Either<Failure, UploadImageResponse>> uploadFile(
-      {required String path, required Uint8List file, required String imageName});
-      Future<Either<Failure, void>> updateUserOnDb({
+      {required String path,
+      required Uint8List file,
+      required String imageName});
+  Future<Either<Failure, void>> updateUserOnDb({
     required Map<String, dynamic> user,
     required String dbName,
   });
@@ -49,11 +45,6 @@ abstract class FirebaseService {
     required int loadCount,
     required DateTime lastFetchedDate,
   });
-  Future<Either<Failure, void>> deleteImageFromDb({
-    required String path,
-    required String imageName,
-    required String id
-  });
-
-  
+  Future<Either<Failure, void>> deleteImageFromDb(
+      {required String path, required String imageName, required String id});
 }

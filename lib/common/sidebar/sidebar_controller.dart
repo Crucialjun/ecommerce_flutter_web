@@ -23,7 +23,7 @@ class SidebarController extends GetxController {
     return hoverItem.value == route;
   }
 
-   void menuOnTap(String route) {
+  void menuOnTap(String route) {
     if (isActive(route)) {
       return;
     } else {
@@ -43,7 +43,4 @@ class SidebarController extends GetxController {
     "/products",
     "/brands",
   ];
-
- 
 }
-
