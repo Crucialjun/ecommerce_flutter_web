@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:flutter/material.dart';
 
 class ProductBottomNavigationButtons extends StatelessWidget {
@@ -5,6 +6,25 @@ class ProductBottomNavigationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return AppRoundedContainer(
+      child: 
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                print("Cancel");
+              },
+              child: Text("Cancel"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                print("Save");
+              },
+              child: Text("Save"),
+            ),
+          ],
+        ),
+    );
   }
 }

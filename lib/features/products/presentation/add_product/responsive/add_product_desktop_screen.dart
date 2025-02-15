@@ -108,7 +108,7 @@ class AddProductDesktopScreen extends StatelessWidget {
                               SizedBox(
                                 height: AppSizes.spaceBtwItems,
                               ),
-                              ProductAdditionalImages(),
+                              //ProductAdditionalImages(),
                             ],
                           ),
                         ),

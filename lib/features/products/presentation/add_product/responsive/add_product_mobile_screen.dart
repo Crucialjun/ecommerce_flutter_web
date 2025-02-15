@@ -91,7 +91,7 @@ class AddProductMobileScreen extends StatelessWidget {
                   SizedBox(
                     height: AppSizes.spaceBtwItems,
                   ),
-                  ProductAdditionalImages()
+                  //ProductAdditionalImages()
                 ],
               )),
               SizedBox(
