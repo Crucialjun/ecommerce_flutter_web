@@ -11,6 +11,8 @@ import 'package:ecommerce_flutter_web/features/brands/presentation/edit_brand/ed
 import 'package:ecommerce_flutter_web/features/categories/presentation/all_categories/categories_screen.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/create_category/create_category_screen.dart';
 import 'package:ecommerce_flutter_web/features/categories/presentation/edit_category/edit_category_screen.dart';
+import 'package:ecommerce_flutter_web/features/customers/presentation/all_customers/all_customers_screen.dart';
+import 'package:ecommerce_flutter_web/features/customers/presentation/customer_details/customer_details_screen.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/media_screen.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/add_product/add_product_screen.dart';
@@ -78,6 +80,15 @@ class Routes {
     GetPage(
         name: AddProductScreen.routeName,
         page: () => const AddProductScreen(),
-        middlewares: [RouteMiddlewares()])
+        middlewares: [RouteMiddlewares()]),
+    GetPage(
+        name: AllCustomersScreen.routeName,
+        page: () => const AllCustomersScreen(),
+        middlewares: [RouteMiddlewares()]),
+        GetPage(
+        name: CustomerDetailsScreen.routeName,
+        page: () => const CustomerDetailsScreen(),
+        middlewares: [RouteMiddlewares()]),
+
   ];
 }
