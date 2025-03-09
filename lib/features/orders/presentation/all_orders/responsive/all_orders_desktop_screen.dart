@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter_web/common/headers/app_table_header.dart';
 import 'package:ecommerce_flutter_web/common/widgets/breadcrumbs_with_heading.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
@@ -23,7 +24,7 @@ class AllOrdersDesktopScreen extends StatelessWidget {
               AppRoundedContainer(
                 child: Column(
                   children: [
-                    Text('All Orders'),
+                    AppTableHeader(),
                     SizedBox(height: AppSizes.spaceBtwItems),
                     OrdersTable(),
                   ],
