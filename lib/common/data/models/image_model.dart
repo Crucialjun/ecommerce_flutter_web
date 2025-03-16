@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-import 'package:universal_html/html.dart';
 
 class ImageModel {
   String id;

@@ -7,10 +7,10 @@ import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/w
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_folder_dropdown.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_images_list_item.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/widgets/media_images_list_item_with_checkbox.dart';
-import 'package:extended_image/extended_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
+
 
 class MediaContent extends StatelessWidget {
   MediaContent(

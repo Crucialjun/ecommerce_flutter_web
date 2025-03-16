@@ -2,7 +2,7 @@ import 'package:ecommerce_flutter_web/features/categories/presentation/data/mode
 import 'package:ecommerce_flutter_web/features/categories/presentation/edit_category/responsive/edit_category_desktop_screen.dart';
 import 'package:ecommerce_flutter_web/utils/site_template.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 
 class EditCategoryScreen extends StatelessWidget {
   static const route = "/edit-category";

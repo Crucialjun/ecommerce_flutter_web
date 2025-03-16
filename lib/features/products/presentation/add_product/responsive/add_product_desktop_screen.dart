@@ -1,9 +1,9 @@
 import 'package:ecommerce_flutter_web/common/widgets/breadcrumbs_with_heading.dart';
 import 'package:ecommerce_flutter_web/common/widgets/rounded_container.dart';
 import 'package:ecommerce_flutter_web/constants/app_sizes.dart';
-import 'package:ecommerce_flutter_web/features/products/presentation/add_product/components/product_additional_images.dart';
+
 import 'package:ecommerce_flutter_web/features/products/presentation/add_product/components/product_attributes.dart';
-import 'package:ecommerce_flutter_web/features/products/presentation/add_product/components/product_bottom_navigation_buttons.dart';
+
 import 'package:ecommerce_flutter_web/features/products/presentation/add_product/components/product_brand.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/add_product/components/product_categories.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/add_product/components/product_stock_and_pricing.dart';

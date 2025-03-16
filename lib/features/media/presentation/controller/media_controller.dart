@@ -21,7 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:universal_html/html.dart' as html;
+
 
 class MediaController extends GetxController {
   static MediaController get instance => Get.find();
