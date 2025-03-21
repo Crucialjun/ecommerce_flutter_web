@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter_web/constants/app_assets.dart';
 import 'package:ecommerce_flutter_web/constants/app_colors.dart';
 import 'package:ecommerce_flutter_web/features/banners/presentation/all_banners/all_banners_screen.dart';
 import 'package:ecommerce_flutter_web/features/customers/presentation/all_customers/all_customers_screen.dart';
+import 'package:ecommerce_flutter_web/features/orders/presentation/all_orders/all_orders_screen.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/all_products/products_screen.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +77,11 @@ class AppSidebar extends StatelessWidget {
                       route: AllCustomersScreen.routeName,
                       icon: Icons.people,
                       title: "Customers",
+                    ),
+                    const SidebarMenuItem(
+                      route: AllOrdersScreen.routeName,
+                      icon: Icons.shopping_cart_checkout,
+                      title: "Orders",
                     ),
                   ],
                 ),

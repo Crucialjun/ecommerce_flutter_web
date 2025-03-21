@@ -15,6 +15,7 @@ import 'package:ecommerce_flutter_web/features/customers/presentation/all_custom
 import 'package:ecommerce_flutter_web/features/customers/presentation/customer_details/customer_details_screen.dart';
 import 'package:ecommerce_flutter_web/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:ecommerce_flutter_web/features/media/presentation/media_screen/media_screen.dart';
+import 'package:ecommerce_flutter_web/features/orders/presentation/all_orders/all_orders_screen.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/add_product/add_product_screen.dart';
 import 'package:ecommerce_flutter_web/features/products/presentation/all_products/products_screen.dart';
 import 'package:get/get.dart';
@@ -88,6 +89,11 @@ class Routes {
         GetPage(
         name: CustomerDetailsScreen.routeName,
         page: () => const CustomerDetailsScreen(),
+        middlewares: [RouteMiddlewares()]),
+    GetPage(
+        name: AllOrdersScreen.routeName,
+        page: () => const AllOrdersScreen(),
+       
         middlewares: [RouteMiddlewares()]),
 
   ];

@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter_web/utils/site_template.dart';
 import 'package:flutter/material.dart';
 
 class AllOrdersScreen extends StatelessWidget {
+  static const String routeName = "/all-orders";
   const AllOrdersScreen({super.key});
 
   @override
